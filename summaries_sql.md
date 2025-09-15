@@ -12,7 +12,7 @@ CROSS JOIN combines every row from one table with each row from another, resulti
 
 SELF JOIN allows comparisons within the same table or the extraction of hierarchical data. Table aliases are used here to avoid repeating the same table name.
 
-SELECT *
-FROM employees e          -- LEFT table
-LEFT JOIN departments d   -- RIGHT table
-    ON e.department_id = d.id;
+### Quick Way to Think About It
+LEFT JOIN → "Keep everything from the first (left) table."
+
+RIGHT JOIN → "Keep everything from the second (right) table."
