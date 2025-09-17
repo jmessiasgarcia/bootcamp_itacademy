@@ -6,7 +6,6 @@ This repository contains exercises, projects, and notes from the **IT Academy Bo
 ## 📚 What you’ll find here  
 - **SQL** → queries, joins, aggregations, and database projects  
 - **Python** → data manipulation, analysis, and visualization  
-- **Excel** → formulas, pivot tables, and dashboards  
 - **Tableau & Power BI** → interactive dashboards and storytelling with data  
 - **Mini-projects** → applying concepts to real-world datasets  
 
