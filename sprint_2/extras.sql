@@ -1,5 +1,4 @@
 /*
-Basic Analysis
 1.Top 3 countries with the highest number of transactions.
 Show the country and the total number of transactions.
 */
