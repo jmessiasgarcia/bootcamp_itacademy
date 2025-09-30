@@ -1,45 +1,33 @@
-/*
-SPRINT_2 - LEVEL_1 - EXERCISE 1
-*/
-
+-- SPRINT_2 - LEVEL_1
+-- EXERCISE 1
 USE transactions;
-SELECT * FROM company LIMIT 10;
-SELECT * FROM transaction li;
+SELECT * FROM company  LIMIT 10;
+SELECT * FROM transaction;
 DESCRIBE company;
 DESCRIBE transaction;
 
-/*
-SPRINT_2 - LEVEL_1 - EXERCISE 2
-List of countries that are generating sales
-*/
+-- SPRINT_2
+-- EXERCISE 2
+-- List of countries that are generating sales
 
-SELECT c.country, COUNT(t.id) AS number_of_Transactions, t.declined
-FROM transaction t
-JOIN company c ON t.company_id = c.id
-WHERE declined = 0
-GROUP BY c.country
-ORDER BY number_of_transactions DESC;
+SELECT c.country
+FROM company c 
+JOIN transaction t ON c.id = t.company_id
+GROUP BY c.country;
 
-/*
-From how many countries are sales being generated?
-*/
+-- From how many countries are sales being generated?
 
 SELECT COUNT(DISTINCT country) AS number_of_countries
-FROM transaction t
-JOIN company c ON t.company_id = c.id
-WHERE t.declined = 0;
--- add 
+FROM transaction
+JOIN company ON transaction.company_id = company.id;
 
-/*
-Identify the company with the highest average sales.
-*/
+-- Identify the company with the highest average sales.
 
-SELECT UPPER(company_name) AS company_name, ROUND(AVG(amount), 2) AS sales_average
-FROM transaction t
-JOIN company c ON t.company_id = c.id
-WHERE t.declined = 0
+SELECT company_name, ROUND(AVG(amount), 2) AS average_transaction
+FROM transaction
+JOIN company ON transaction.company_id = company.id
 GROUP BY company_name
-ORDER BY sales_average DESC
+ORDER BY average_transaction DESC
 LIMIT 1;
 
 /*
@@ -49,27 +37,26 @@ Show all transactions made by companies from Germany.
 */
 
 SELECT *
-FROM transaction t
+FROM transaction
 WHERE company_id IN (
     SELECT id
-    FROM company c
-    WHERE c.country = 'Germany'
-    GROUP BY c.id);
-    
+    FROM company
+    WHERE country = 'Germany'
+);
+
 /* 
 Companies that have made transactions for an amount greater than the average of all transactions.
 */
-
-SELECT company_name
-FROM company 
-WHERE company_name IN (
-    SELECT company_name 
-    FROM transaction
-    WHERE amount >= (
+SELECT c.company_name
+FROM company c
+WHERE c.id IN (
+    SELECT t.company_id
+    FROM transaction t
+    WHERE t.amount > (
 		SELECT AVG(amount) 
-        FROM transaction)
-);
-
+        FROM transaction t))
+        ;
+      
 /* 
 They will eliminate from the system companies that do not have registered transactions, provide a list of these companies.
 */
@@ -127,7 +114,6 @@ WHERE c.country IN (
 AND c.company_name != 'Non Institute' 
 AND t.declined = 0;
 
-
 /*
 Display the list applying only subqueries.
 */
@@ -155,7 +141,7 @@ SELECT
 	c.company_name, 
 	c.phone, 
     c.country, 
-    DATE_FORMAT(t.timestamp,'%d-%m-%Y') AS date, 
+    DATE_FORMAT(t.timestamp,'%d-%m-%Y') AS date,
     t.amount
 FROM transaction t
 JOIN company c ON t.company_id = c.id
@@ -183,4 +169,3 @@ FROM company c
 JOIN transaction t ON t.company_id = c.id
 GROUP BY c.company_name
 ORDER BY number_of_transactions ASC;   
-
