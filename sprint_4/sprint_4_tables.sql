@@ -5,9 +5,9 @@ USE EuroCommerce;
 -- TABLES CREATION
 
 CREATE TABLE products (
-    id VARCHAR(50) PRIMARY KEY,
-    product_name VARCHAR(255) NOT NULL,
-    price VARCHAR(50),
+    id VARCHAR(20) PRIMARY KEY,
+    product_name VARCHAR(50) NOT NULL,
+    price VARCHAR(10),
     colour VARCHAR(20),
     weight DECIMAL(10,2),
     warehouse_id VARCHAR(10)
@@ -17,57 +17,57 @@ CREATE TABLE products (
 CREATE TABLE credit_cards (
     id VARCHAR(50) PRIMARY KEY,
     user_id VARCHAR(10),
-    iban VARCHAR(255),
+    iban VARCHAR(50),
     pan VARCHAR(50),
     pin VARCHAR(10),
-    track_1 VARCHAR(255),
-	track_2 VARCHAR(255),
-    expiring_date VARCHAR(50)
+    track_1 VARCHAR(50),
+	track_2 VARCHAR(50),
+    expiring_date VARCHAR(30)
 );
 
 CREATE TABLE companies (
 	id VARCHAR(50) PRIMARY KEY NOT NULL,
-    company_name VARCHAR(255),
-    phone VARCHAR(50),
-    email VARCHAR(255) UNIQUE,
-    country VARCHAR(255),
-    website VARCHAR(255)
+    company_name VARCHAR(40),
+    phone VARCHAR(20),
+    email VARCHAR(100) UNIQUE,
+    country VARCHAR(40),
+    website VARCHAR(100)
 );
 
 CREATE TABLE european_users (
 	id VARCHAR(50) PRIMARY KEY NOT NULL,
-    name VARCHAR(255),
-	surname VARCHAR(255),
+    name VARCHAR(100),
+	surname VARCHAR(100),
 	phone VARCHAR (100),
-	email VARCHAR (255) UNIQUE,
+	email VARCHAR (100) UNIQUE,
 	birth_date VARCHAR (100),
-	country VARCHAR (255),
-	city VARCHAR (255),
-	postal_code VARCHAR (100),
-	address VARCHAR (255)
+	country VARCHAR (40),
+	city VARCHAR (40),
+	postal_code VARCHAR (20),
+	address VARCHAR (150)
 );
 
 CREATE TABLE american_users (
 	id VARCHAR(50) PRIMARY KEY NOT NULL,
-    name VARCHAR(255),
-	surname VARCHAR(255),
+    name VARCHAR(100),
+	surname VARCHAR(100),
 	phone VARCHAR (100),
-	email VARCHAR (255) UNIQUE,
+	email VARCHAR (100) UNIQUE,
 	birth_date VARCHAR (100),
-	country VARCHAR (255),
-	city VARCHAR (255),
-	postal_code VARCHAR (100),
-	address VARCHAR (255)
+	country VARCHAR (40),
+	city VARCHAR (40),
+	postal_code VARCHAR (20),
+	address VARCHAR (150)
 );
 
 CREATE TABLE transactions (
-    id VARCHAR(255) PRIMARY KEY NOT NULL,
+    id VARCHAR(100) PRIMARY KEY NOT NULL,
     card_id VARCHAR(50),
     business_id VARCHAR(50),
     timestamp DATETIME,
     amount DECIMAL(10,2),
     declined BOOLEAN,
-    product_ids VARCHAR(255),
+    product_ids VARCHAR(100),
     user_id VARCHAR(50),
     lat FLOAT,
     longitude FLOAT,
@@ -147,14 +147,14 @@ ADD COLUMN continent VARCHAR(55) NOT NULL DEFAULT 'America';
 -- BRIDGE TABLE CREATION 
 
 CREATE TABLE transaction_products (
-    transaction_id VARCHAR(255),
-    product_id VARCHAR(255),
+    transaction_id VARCHAR(100),
+    product_id VARCHAR(10),
     FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
 );
 
 -- SWITCH TEMPORARY OFF FOREIGN KEY TO AVOID ERROR 1452: PARENT TABLES ARE MISSING FOR THE FOREIGN KEYS IN TRANSACTIONS
 
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS = 0; 
 
 -- LOAD DATA TRANSACTIONS TABLE
 LOAD DATA LOCAL INFILE '/Users/josemessiasferreira/Documents/sprint_4_data/transactions.csv'
