@@ -1,0 +1,2031 @@
+switched to db my_store
+my_store> db.comments.find().limit(2)
+[
+  {
+    _id: ObjectId('5a9427648b0beebeb69579cc'),
+    name: 'Andrea Le',
+    email: 'andrea_le@fakegmail.com',
+    movie_id: ObjectId('573a1390f29313caabcd418c'),
+    text: 'Rem officiis eaque repellendus amet eos doloribus. Porro dolor voluptatum voluptates neque culpa molestias. Voluptate unde nulla temporibus ullam.',
+    date: ISODate('2012-03-26T23:20:16.000Z')
+  },
+  {
+    _id: ObjectId('5a9427648b0beebeb69579cf'),
+    name: 'Greg Powell',
+    email: 'greg_powell@fakegmail.com',
+    movie_id: ObjectId('573a1390f29313caabcd41b1'),
+    text: 'Tenetur dolorum molestiae ea. Eligendi praesentium unde quod porro. Commodi nisi sit placeat rerum vero cupiditate neque. Dolorum nihil vero animi.',
+    date: ISODate('1987-02-10T00:29:36.000Z')
+  }
+]
+my_store> db.comments.find().limit(2)
+[
+  {
+    _id: ObjectId('5a9427648b0beebeb69579cc'),
+    name: 'Andrea Le',
+    email: 'andrea_le@fakegmail.com',
+    movie_id: ObjectId('573a1390f29313caabcd418c'),
+    text: 'Rem officiis eaque repellendus amet eos doloribus. Porro dolor voluptatum voluptates neque culpa molestias. Voluptate unde nulla temporibus ullam.',
+    date: ISODate('2012-03-26T23:20:16.000Z')
+  },
+  {
+    _id: ObjectId('5a9427648b0beebeb69579cf'),
+    name: 'Greg Powell',
+    email: 'greg_powell@fakegmail.com',
+    movie_id: ObjectId('573a1390f29313caabcd41b1'),
+    text: 'Tenetur dolorum molestiae ea. Eligendi praesentium unde quod porro. Commodi nisi sit placeat rerum vero cupiditate neque. Dolorum nihil vero animi.',
+    date: ISODate('1987-02-10T00:29:36.000Z')
+  }
+]
+my_store> db.users.countDocuments()
+| 
+185
+my_store> db.cinemas.countDocuments({ "state": "California" })
+| db.cinemas.countDocuments({ "state": "California" })
+| 
+0
+my_store> db.cinemas.countDocuments({ "state": "California" })
+| db.theaters.countDocuments({ "state": "California" })
+0
+my_store> db.theaters.countDocuments({ "state": "CA" })
+0
+my_store> db.theaters.count({"state": "CA"})
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+0
+my_store> db.theaters.countDocuments({"state": "CA"})
+0
+my_store> db.cinemas.findOne()
+| 
+null
+my_store> db.cinemas.findOne()
+| 
+null
+my_store> db.theaters.findOne()
+{
+  _id: ObjectId('59a47286cfa9a3a73e51e72c'),
+  theaterId: 1000,
+  location: {
+    address: {
+      street1: '340 W Market',
+      city: 'Bloomington',
+      state: 'MN',
+      zipcode: '55425'
+    },
+    geo: { type: 'Point', coordinates: [ -93.24565, 44.85466 ] }
+  }
+}
+my_store> db.theaters.countDocuments({"state": "CA"})
+0
+my_store> db.cinemas.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.cinemas.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.theaters.countDocuments({"address.state": "CA"})
+0
+my_store> db.cinemas.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.cinemas.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.cinemas.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.theaters.countDocuments({ "address.state": "CA" })
+0
+my_store> db.getName()
+| 
+my_store
+my_store> db.getCollectionNames()
+| 
+[ 'users', 'comments', 'theaters', 'sessions', 'movies' ]
+my_store> db.theaters.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.theaters.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.getName()
+| 
+my_store
+my_store> db.getName()
+| 
+my_store
+my_store> use sample_mflix
+| 
+switched to db sample_mflix
+sample_mflix> db.theaters.countDocuments({ "address.state": "CA" })
+| 
+0
+sample_mflix> use my_store
+switched to db my_store
+my_store> db.theaters.countDocuments({ "address.state": "CA" })
+| 
+0
+my_store> db.theaters.countDocuments({'address.state':'CA'})
+0
+my_store> db.theaters.findOne()
+| 
+{
+  _id: ObjectId('59a47286cfa9a3a73e51e72c'),
+  theaterId: 1000,
+  location: {
+    address: {
+      street1: '340 W Market',
+      city: 'Bloomington',
+      state: 'MN',
+      zipcode: '55425'
+    },
+    geo: { type: 'Point', coordinates: [ -93.24565, 44.85466 ] }
+  }
+}
+my_store> db.theaters.countDocuments({ "location.address.state": "CA" })
+| 
+169
+my_store> db.users.findOne()
+{
+  _id: ObjectId('59b99db4cfa9a34dcd7885b6'),
+  name: 'Ned Stark',
+  email: 'sean_bean@gameofthron.es',
+  password: '$2b$12$UREFwsRUoyF0CRqGNK0LzO0HM/jLhgUCNNIJ9RJAqMUQ74crlJ1Vu'
+}
+my_store> db.users.find().sort({ _id: 1 }).limit(1)
+| 
+[
+  {
+    _id: ObjectId('59b99db4cfa9a34dcd7885b6'),
+    name: 'Ned Stark',
+    email: 'sean_bean@gameofthron.es',
+    password: '$2b$12$UREFwsRUoyF0CRqGNK0LzO0HM/jLhgUCNNIJ9RJAqMUQ74crlJ1Vu'
+  }
+]
+my_store> db.movies.countDocuments({ genre: "Comedy" })
+| 
+0
+my_store> db.movies.findOne()
+{
+  _id: ObjectId('573a1390f29313caabcd4135'),
+  plot: 'Three men hammer on an anvil and pass a bottle of beer around.',
+  genres: [ 'Short' ],
+  runtime: 1,
+  cast: [ 'Charles Kayser', 'John Ott' ],
+  num_mflix_comments: 1,
+  title: 'Blacksmith Scene',
+  fullplot: 'A stationary camera looks at a large anvil with a blacksmith behind it and one on either side. The smith in the middle draws a heated metal rod from the fire, places it on the anvil, and all three begin a rhythmic hammering. After several blows, the metal goes back in the fire. One smith pulls out a bottle of beer, and they each take a swig. Then, out comes the glowing metal and the hammering resumes.',
+  countries: [ 'USA' ],
+  released: ISODate('1893-05-09T00:00:00.000Z'),
+  directors: [ 'William K.L. Dickson' ],
+  rated: 'UNRATED',
+  awards: { wins: 1, nominations: 0, text: '1 win.' },
+  lastupdated: '2015-08-26 00:03:50.133000000',
+  year: 1893,
+  imdb: { rating: 6.2, votes: 1189, id: 5 },
+  type: 'movie',
+  tomatoes: {
+    viewer: { rating: 3, numReviews: 184, meter: 32 },
+    lastUpdated: ISODate('2015-06-28T18:34:09.000Z')
+  }
+}
+my_store> db.movies.countDocuments({ genres: "Comedy" })
+| 
+7024
+my_store> db.movies.find({
+|   year: 1932,
+|   $or: [
+|     { genres: "Drama" },
+|     { languages: "French" }
+|   ]
+| })
+| 
+[
+  {
+    _id: ObjectId('573a1391f29313caabcd9458'),
+    plot: 'A young artist draws a face at a canvas on his easel. Suddenly the mouth on the drawing comes into life and starts talking. The artist tries to wipe it away with his hand, but when he looks...',
+    runtime: 55,
+    rated: 'UNRATED',
+    cast: [
+      'Enrique Rivero',
+      'Elizabeth Lee Miller',
+      'Pauline Carton',
+      'Odette Talazac'
+    ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BYWY3ODE5ZWEtYjlmYi00NjA4LTk4ZWYtMzBhZDE5MjY0YTYxXkEyXkFqcGdeQXVyNzI4MDMyMTU@._V1_SY1000_SX677_AL_.jpg',
+    title: 'The Blood of a Poet',
+    lastupdated: '2015-09-16 13:13:05.537000000',
+    languages: [ 'French' ],
+    released: ISODate('2010-05-20T00:00:00.000Z'),
+    directors: [ 'Jean Cocteau' ],
+    writers: [ 'Jean Cocteau' ],
+    awards: { wins: 1, nominations: 0, text: '1 win.' },
+    year: 1932,
+    imdb: { rating: 7.5, votes: 3903, id: 21331 },
+    countries: [ 'France' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.9, numReviews: 2865, meter: 86 },
+      dvd: ISODate('2008-04-29T00:00:00.000Z'),
+      critic: { rating: 7.7, numReviews: 18, meter: 94 },
+      lastUpdated: ISODate('2015-08-19T19:22:08.000Z'),
+      rotten: 1,
+      production: 'Home Vision Entertainment',
+      fresh: 17
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd99a3'),
+    plot: 'Junta is hated by the people in the village where she lives, especially by the women, who suspect her of being a witch. Only she can climb the nearby mountains to a cave high up, whence a ...',
+    genres: [ 'Drama', 'Fantasy', 'Mystery' ],
+    runtime: 85,
+    cast: [
+      'Leni Riefenstahl',
+      'Mathias Wieman',
+      'Beni Fèhrer',
+      'Max Holzboer'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BNTQ1NTMzMTQtODIyYS00MTAxLWE1NTgtZGFkZTE2YmZkZmNjXkEyXkFqcGdeQXVyNTA2NDc4OA@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'The Blue Light',
+    fullplot: 'Junta is hated by the people in the village where she lives, especially by the women, who suspect her of being a witch. Only she can climb the nearby mountains to a cave high up, whence a mysterious blue light glows when the moon is full. Many young men of the village have died trying to follow her. She is driven out of town, and takes to living in the mountains. Eventually she shares the secret of the blue light with one man, and he betrays it.',
+    languages: [ 'German', 'Italian' ],
+    released: ISODate('1934-05-08T00:00:00.000Z'),
+    directors: [ 'Leni Riefenstahl', 'Bèla Balèzs' ],
+    writers: [ 'Bèla Balèzs', 'Leni Riefenstahl (story)' ],
+    awards: { wins: 1, nominations: 1, text: '1 win & 1 nomination.' },
+    lastupdated: '2015-08-03 01:02:12.350000000',
+    year: 1932,
+    imdb: { rating: 7, votes: 727, id: 22694 },
+    countries: [ 'Germany' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.7, numReviews: 325, meter: 61 },
+      dvd: ISODate('2006-08-22T00:00:00.000Z'),
+      critic: { rating: 5.6, numReviews: 8, meter: 75 },
+      lastUpdated: ISODate('2015-08-14T18:39:12.000Z'),
+      rotten: 2,
+      fresh: 6
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd99e3'),
+    plot: 'A young French soldier in World War I is overcome with guilt when he kills a German soldier who, like himself, is a musically gifted conscript, each having attended the same musical ...',
+    genres: [ 'Drama' ],
+    runtime: 76,
+    cast: [
+      'Lionel Barrymore',
+      'Nancy Carroll',
+      'Phillips Holmes',
+      'Louise Carter'
+    ],
+    num_mflix_comments: 2,
+    poster: 'https://m.media-amazon.com/images/M/MV5BYzJlMDZjM2QtNWU4Ny00ZGRiLTljNjctZGZjNGM2ZmIzN2I1XkEyXkFqcGdeQXVyMjUxODE0MDY@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Broken Lullaby',
+    fullplot: "A young French soldier in World War I is overcome with guilt when he kills a German soldier who, like himself, is a musically gifted conscript, each having attended the same musical conservatory in France. The fact that the incident occurred in war does not assuage his guilt. He travels to Germany to meet the man's family.",
+    languages: [ 'English' ],
+    released: ISODate('1932-01-24T00:00:00.000Z'),
+    directors: [ 'Ernst Lubitsch' ],
+    writers: [
+      'Maurice Rostand (play)',
+      'Reginald Berkeley (adaptation)',
+      'Samson Raphaelson (screenplay)',
+      'Ernest Vajda (screenplay)'
+    ],
+    awards: { wins: 0, nominations: 1, text: '1 nomination.' },
+    lastupdated: '2015-08-19 00:33:29.483000000',
+    year: 1932,
+    imdb: { rating: 7.6, votes: 499, id: 22725 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 4, numReviews: 119, meter: 100 },
+      production: 'Paramount Pictures',
+      lastUpdated: ISODate('2015-08-09T18:15:06.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9a10'),
+    plot: 'Famous motor-racing champion Joe Greer returns to his hometown to compete in a local race. He discovers his younger brother has aspirations to become a racing champion and during the race ...',
+    genres: [ 'Drama', 'Action' ],
+    runtime: 85,
+    cast: [ 'James Cagney', 'Joan Blondell', 'Ann Dvorak', 'Eric Linden' ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMDg0OTc2YjUtYWMzZi00YWIxLTkwMjEtODFjYjhkOGI2ZWQwXkEyXkFqcGdeQXVyMjUxODE0MDY@._V1_SY1000_SX677_AL_.jpg',
+    title: 'The Crowd Roars',
+    fullplot: "Famous motor-racing champion Joe Greer returns to his hometown to compete in a local race. He discovers his younger brother has aspirations to become a racing champion and during the race Joe loses his nerve when another driver his killed, leaving his brother to win. Joe's luck takes a plunge while his brother rises to height of fame.",
+    languages: [ 'English' ],
+    released: ISODate('1932-04-16T00:00:00.000Z'),
+    directors: [ 'Howard Hawks' ],
+    writers: [
+      'John Bright',
+      'Niven Busch',
+      'Kubec Glasmon',
+      'Howard Hawks (story)',
+      'Seton I. Miller'
+    ],
+    awards: { wins: 0, nominations: 1, text: '1 nomination.' },
+    lastupdated: '2015-08-25 00:03:34.743000000',
+    year: 1932,
+    imdb: { rating: 6.4, votes: 663, id: 22792 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 2.9, numReviews: 40, meter: 25 },
+      production: 'MGM',
+      lastUpdated: ISODate('2015-06-28T19:58:39.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9a5d'),
+    plot: 'A tale of the love between ambulance driver Lt. Henry and Nurse Catherine Barkley during World War I. The action takes place in Italy and the two fall in love during the war and will stop ...',
+    genres: [ 'Drama', 'Romance', 'War' ],
+    runtime: 80,
+    rated: 'UNRATED',
+    cast: [ 'Helen Hayes', 'Gary Cooper', 'Adolphe Menjou', 'Mary Philips' ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMzM2ODc0NTY3OF5BMl5BanBnXkFtZTgwMjQwNzkzMjE@._V1_SY1000_SX677_AL_.jpg',
+    title: 'A Farewell to Arms',
+    fullplot: "A tale of the love between ambulance driver Lt. Henry and Nurse Catherine Barkley during World War I. The action takes place in Italy and the two fall in love during the war and will stop at nothing to be together. The film also analyses Lt. Henry's feelings on war and the purpose of fighting.",
+    languages: [ 'English' ],
+    released: ISODate('1932-12-08T00:00:00.000Z'),
+    directors: [ 'Frank Borzage' ],
+    writers: [
+      'Benjamin Glazer (screenplay)',
+      'Oliver H.P. Garrett (screenplay)',
+      'Ernest Hemingway (novel)'
+    ],
+    awards: {
+      wins: 3,
+      nominations: 2,
+      text: 'Won 2 Oscars. Another 1 win & 2 nominations.'
+    },
+    lastupdated: '2015-08-30 00:01:29.900000000',
+    year: 1932,
+    imdb: { rating: 6.6, votes: 3260, id: 22879 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.2, numReviews: 5622, meter: 52 },
+      dvd: ISODate('1998-06-12T00:00:00.000Z'),
+      critic: { rating: 7.8, numReviews: 13, meter: 92 },
+      lastUpdated: ISODate('2015-09-01T18:04:16.000Z'),
+      rotten: 1,
+      production: 'Gravitas',
+      fresh: 12
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9a76'),
+    plot: 'In this romance a librarian takes a cruise and falls for an unobtainable man, a district attorney married to a crippled woman.',
+    genres: [ 'Drama', 'Romance' ],
+    runtime: 85,
+    rated: 'APPROVED',
+    cast: [
+      'Barbara Stanwyck',
+      'Adolphe Menjou',
+      'Ralph Bellamy',
+      'Dorothy Peterson'
+    ],
+    num_mflix_comments: 3,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMjEzNTU5NTk2N15BMl5BanBnXkFtZTgwMzA2NTAwMjE@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Forbidden',
+    fullplot: "On a cruise to Cuba, Lulu Smith falls in love with Bob Grover. Back home, she breaks off the romance when he tells her he is married. Lulu has a baby, but doesn't tell Bob, who turns out to be a rising politician. She passes herself off as the baby's nanny. When Bob learns what is going on, he adopts the little girl, not telling his wife or anyone else where she came from. Lulu gets a job at a newspaper. Things get complicated when the editor gets the dirt on Grover, but also wants to marry Lulu.",
+    languages: [ 'English', 'French' ],
+    released: ISODate('1932-01-15T00:00:00.000Z'),
+    directors: [ 'Frank Capra' ],
+    writers: [ 'Frank Capra (story)', 'Jo Swerling (adaptation)' ],
+    awards: { wins: 0, nominations: 1, text: '1 nomination.' },
+    lastupdated: '2015-09-05 00:24:21.237000000',
+    year: 1932,
+    imdb: { rating: 7, votes: 831, id: 22905 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.5, numReviews: 154, meter: 63 },
+      production: 'Columbia Pictures',
+      lastUpdated: ISODate('2015-08-23T18:57:35.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9a7e'),
+    plot: "A circus' beautiful trapeze artist agrees to marry the leader of side-show performers, but his deformed friends discover she is only marrying him for his inheritance.",
+    genres: [ 'Drama', 'Horror' ],
+    runtime: 64,
+    rated: 'UNRATED',
+    cast: [ 'Wallace Ford', 'Leila Hyams', 'Olga Baclanova', 'Roscoe Ates' ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMjMyYjgyOTQtZDVlZS00NTQ0LWJiNDItNGRlZmM3Yzc0N2Y0XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Freaks',
+    fullplot: "A circus trapeze artist, Cleopatra, takes an interest in Hans, a midget who works in the circus sideshow. Her interest however is in the money Hans will be inheriting and she is actually carrying on an affair with another circus performer, Hercules. Hans's fiancèe does her best to convince him that he is being used but to no avail. At their wedding party, a drunken Cleopatra tells the sideshow freaks just what she thinks of them. Together, the freaks decide to make her one of their own.",
+    languages: [ 'English', 'German', 'French' ],
+    released: ISODate('1932-02-20T00:00:00.000Z'),
+    directors: [ 'Tod Browning' ],
+    writers: [ `Clarence Aaron 'Tod' Robbins (suggested by story: "Spurs")` ],
+    awards: { wins: 1, nominations: 1, text: '1 win & 1 nomination.' },
+    lastupdated: '2015-09-15 01:36:35.213000000',
+    year: 1932,
+    imdb: { rating: 8, votes: 29972, id: 22913 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 4, numReviews: 23831, meter: 88 },
+      dvd: ISODate('2004-08-10T00:00:00.000Z'),
+      critic: { rating: 8.4, numReviews: 49, meter: 94 },
+      lastUpdated: ISODate('2015-09-13T17:12:35.000Z'),
+      consensus: 'Time has been kind to this horror legend: Freaks manages to frighten, shock, and even touch viewers in ways that contemporary viewers missed.',
+      rotten: 3,
+      production: 'MGM',
+      fresh: 46
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9aab'),
+    plot: 'A group of very different individuals staying at a luxurious hotel in Berlin deal with each of their respective dramas.',
+    genres: [ 'Drama', 'Romance' ],
+    runtime: 112,
+    rated: 'PASSED',
+    cast: [
+      'Greta Garbo',
+      'John Barrymore',
+      'Joan Crawford',
+      'Wallace Beery'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BODc5OWY0MWQtZjgzMS00YTA1LTk1ZmEtY2VmYTgwYmU4ZjAwXkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Grand Hotel',
+    fullplot: `Berlin's plushest, most expensive hotel is the setting where in the words of Dr. Otternschlag "People come, people go. Nothing ever happens.". The doctor is usually drunk so he missed the fact that Baron von Geigern is broke and trying to steal eccentric dancer Grusinskaya's pearls. He ends up stealing her heart instead. Powerful German businessman Preysing brow beats Kringelein, one of his company's lowly bookkeepers but it is the terminally ill Kringelein who holds all the cards in the end. Meanwhile, the Baron also steals the heart of Preysing's mistress, Flaemmchen, but she doesn't end up with either one of them in the end...`,
+    languages: [ 'English', 'Russian' ],
+    released: ISODate('1932-09-11T00:00:00.000Z'),
+    directors: [ 'Edmund Goulding' ],
+    writers: [ 'Vicki Baum (by)', 'William Absalom Drake (play)' ],
+    awards: {
+      wins: 2,
+      nominations: 1,
+      text: 'Won 1 Oscar. Another 1 win & 1 nomination.'
+    },
+    lastupdated: '2015-08-24 00:02:32.743000000',
+    year: 1932,
+    imdb: { rating: 7.6, votes: 12001, id: 22958 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.8, numReviews: 6809, meter: 77 },
+      dvd: ISODate('2004-02-03T00:00:00.000Z'),
+      critic: { rating: 7.8, numReviews: 35, meter: 86 },
+      lastUpdated: ISODate('2015-09-10T19:09:54.000Z'),
+      consensus: 'Perhaps less a true film than a series of star-studded vignettes, Grand Hotel still remains an entertaining look back at a bygone Hollywood era.',
+      rotten: 5,
+      production: 'MGM Home Entertainment',
+      fresh: 30
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9aff'),
+    plot: 'Wrongly convicted James Allen serves in the intolerable conditions of a southern chain gang, which later comes back to haunt him.',
+    genres: [ 'Crime', 'Drama', 'Film-Noir' ],
+    runtime: 92,
+    rated: 'NOT RATED',
+    cast: [ 'Paul Muni', 'Glenda Farrell', 'Helen Vinson', 'Noel Francis' ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMDllMDA4YWQtYzdmNC00OGYxLWE0N2QtZmNjM2QxMTgxYzFkXkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'I Am a Fugitive from a Chain Gang',
+    fullplot: "Having returned from fighting in World War I, James Allen doesn't want to settle into a humdrum life and decides to set off to find his fortune. He travels the length and breadth of America, working as a skilled tradesman in the construction industry. When times get tough however, he finds himself living in a shelter where an acquaintance suggests they go out for a hamburger. What the friend really has in mind is to rob the diner and Allen soon finds himself working on a chain gang with a long jail sentence. Allen manages to escape however and heads to Chicago where over several years he slowly but surely works his way up the ladder to become one of the most respected construction engineers in the city. His past catches up with him and despite protestations from civic leaders and his many friends in Chicago, he finds himself again on the chain gang. Escaping for a second time, he accepts that to survive, he must lead a life of crime.",
+    languages: [ 'English' ],
+    released: ISODate('1932-11-19T00:00:00.000Z'),
+    directors: [ 'Mervyn LeRoy' ],
+    writers: [
+      'Robert E. Burns (by)',
+      'Howard J. Green (screen play)',
+      'Brown Holmes (screen play)'
+    ],
+    awards: {
+      wins: 6,
+      nominations: 0,
+      text: 'Nominated for 3 Oscars. Another 3 wins.'
+    },
+    lastupdated: '2015-09-15 03:22:11.277000000',
+    year: 1932,
+    imdb: { rating: 8.1, votes: 8696, id: 23042 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 4.1, numReviews: 3095, meter: 91 },
+      dvd: ISODate('2005-05-10T00:00:00.000Z'),
+      critic: { rating: 8.3, numReviews: 21, meter: 100 },
+      lastUpdated: ISODate('2015-09-15T17:02:53.000Z'),
+      rotten: 0,
+      production: 'Vitaphone Corporation',
+      fresh: 21
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9be6'),
+    plot: 'A living mummy stalks the beautiful woman he believes is the reincarnation of his lover.',
+    genres: [ 'Horror' ],
+    runtime: 73,
+    rated: 'UNRATED',
+    cast: [ 'Boris Karloff', 'Zita Johann', 'David Manners', 'Arthur Byron' ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMjEyNTIzNzcyMV5BMl5BanBnXkFtZTgwOTgwODY2MTE@._V1_SY1000_SX677_AL_.jpg',
+    title: 'The Mummy',
+    fullplot: 'In 1921 a field expedition in Egypt discovers the mummy of ancient Egyptian prince Im-Ho-Tep, who was condemned and buried alive for sacrilege. Also found in the tomb is the Scroll of Thoth, which can bring the dead back to life. One night a young member of the expedition reads the Scroll out loud, and then goes insane, realizing that he has brought Im-Ho-Tep back to life. Ten years later, disguised as a modern Egyptian, the mummy attempts to reunite with his lost love, an ancient princess who has been reincarnated into a beautiful young woman.',
+    languages: [ 'English', 'Arabic', 'French' ],
+    released: ISODate('1932-12-22T00:00:00.000Z'),
+    directors: [ 'Karl Freund' ],
+    writers: [
+      'Nina Wilcox Putnam (from a story by)',
+      'Richard Schayer (from a story by)',
+      'John L. Balderston (screen play)'
+    ],
+    awards: { wins: 1, nominations: 1, text: '1 win & 1 nomination.' },
+    lastupdated: '2015-08-31 00:24:56.293000000',
+    year: 1932,
+    imdb: { rating: 7.2, votes: 14424, id: 23245 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.5, numReviews: 11906, meter: 72 },
+      dvd: ISODate('2001-08-28T00:00:00.000Z'),
+      critic: { rating: 7.9, numReviews: 27, meter: 93 },
+      lastUpdated: ISODate('2015-08-19T19:09:04.000Z'),
+      consensus: "Relying more on mood and atmosphere than the thrills typical of modern horror fare, Universal's The Mummy sets a masterful template for mummy-themed films to follow.",
+      rotten: 2,
+      production: 'Universal Pictures',
+      fresh: 25
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9c1b'),
+    plot: "Bank clerk William Marble is desperate for money to pay his family's bills. When his wealthy nephew visits, Marble asks him for a loan, but the young man refuses. Marble decides to kill his...",
+    genres: [ 'Crime', 'Drama' ],
+    runtime: 81,
+    rated: 'PASSED',
+    cast: [
+      'Charles Laughton',
+      "Maureen O'Sullivan",
+      'Dorothy Peterson',
+      'Verree Teasdale'
+    ],
+    num_mflix_comments: 1,
+    title: 'Payment Deferred',
+    fullplot: "Bank clerk William Marble is desperate for money to pay his family's bills. When his wealthy nephew visits, Marble asks him for a loan, but the young man refuses. Marble decides to kill his nephew. It is a twisted path to justice after Marble is transformed by the crime he committed and the wealth he gains.",
+    languages: [ 'English' ],
+    released: ISODate('1932-11-07T00:00:00.000Z'),
+    directors: [ 'Lothar Mendes' ],
+    writers: [
+      'Ernest Vajda (screen play)',
+      'Claudine West (screen play)',
+      'Jeffrey Dell (based upon the play by)'
+    ],
+    awards: { wins: 1, nominations: 0, text: '1 win.' },
+    lastupdated: '2015-06-24 00:22:17.033000000',
+    year: 1932,
+    imdb: { rating: 7, votes: 411, id: 23326 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.4, numReviews: 94, meter: 82 },
+      production: 'MGM',
+      lastUpdated: ISODate('2015-09-16T17:50:11.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9c4c'),
+    countries: [ 'France' ],
+    genres: [ 'Drama' ],
+    runtime: 91,
+    cast: [ 'Harry Baur', 'Robert Lynen', 'Louis Gauthier', 'Simone Aubry' ],
+    num_mflix_comments: 3,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMzZiOWVhNDgtOGJjYy00OWI5LThiMTMtYTZjYjIyYzU2MDJiL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMDI3OTIzOA@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'The Red Head',
+    lastupdated: '2015-06-03 00:02:33.337000000',
+    languages: [ 'French' ],
+    released: ISODate('1934-03-07T00:00:00.000Z'),
+    directors: [ 'Julien Duvivier' ],
+    writers: [ 'Jules Renard (novel)', 'Julien Duvivier (screenplay)' ],
+    awards: { wins: 1, nominations: 0, text: '1 win.' },
+    year: 1932,
+    imdb: { rating: 7.6, votes: 272, id: 23345 },
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 4.2, numReviews: 104, meter: 100 },
+      dvd: ISODate('2009-02-24T00:00:00.000Z'),
+      production: 'Divisa Home Video',
+      lastUpdated: ISODate('2015-09-01T18:51:07.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9c5d'),
+    plot: 'The owner of a rubber plantation becomes involved with the new wife of one of his employees.',
+    genres: [ 'Drama', 'Romance' ],
+    runtime: 83,
+    rated: 'PASSED',
+    cast: [ 'Clark Gable', 'Jean Harlow', 'Gene Raymond', 'Mary Astor' ],
+    num_mflix_comments: 2,
+    poster: 'https://m.media-amazon.com/images/M/MV5BOWY4OWMxM2QtOTJmNi00NDJiLTk2MjQtZTJhNmY2MmZkMDgzXkEyXkFqcGdeQXVyNjc0MzMzNjA@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Red Dust',
+    fullplot: "Conditions are spartan on Dennis Carson's Indochina rubber plantation during a dusty dry monsoon. The latest boat upriver brings Carson an unwelcome guest: Vantine, a floozy from Saigon, hoping to evade the police by a stay upcountry. But Carson, initially uninterested, soon succumbs to Vantine's ostentatious charms...until the arrival of surveyor Gary Willis, ill with malaria, and his refined but sensuous wife Barbara. Now the rains begin, and passion flows like water...",
+    languages: [ 'English' ],
+    released: ISODate('1932-10-22T00:00:00.000Z'),
+    directors: [ 'Victor Fleming' ],
+    writers: [
+      'John Lee Mahin (screen play)',
+      'Wilson Collison (from the play by)'
+    ],
+    awards: { wins: 1, nominations: 0, text: '1 win.' },
+    lastupdated: '2015-07-13 00:10:45.307000000',
+    year: 1932,
+    imdb: { rating: 7.4, votes: 2530, id: 23382 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 2.9, numReviews: 8 },
+      production: 'Tower Pictures',
+      lastUpdated: ISODate('2015-09-15T19:42:56.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9ca6'),
+    plot: 'An ambitious and near insanely violent gangster climbs the ladder of success in the mob, but his weaknesses prove to be his downfall.',
+    genres: [ 'Action', 'Crime', 'Drama' ],
+    runtime: 93,
+    rated: 'PASSED',
+    cast: [ 'Paul Muni', 'Ann Dvorak', 'Karen Morley', 'Osgood Perkins' ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BYmMxZTU2ZDUtM2Y1MS00ZWFmLWJlN2UtNzI0OTJiOTYzMTk3XkEyXkFqcGdeQXVyMjUxODE0MDY@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Scarface',
+    fullplot: "Johnny Lovo rises to the head of the bootlegging crime syndicate on the south side of Chicago following the murder of former head, Big Louis Costillo. Johnny contracted Big Louis' bodyguard, Tony Camonte, to make the hit on his boss. Tony becomes Johnny's second in command. Johnny is not averse to killing anyone who gets in his and Johnny's way. As Tony is thinking bigger than Johnny and is not afraid of anyone or anything, Tony increasingly makes decisions on his own instead of following Johnny's orders, especially in not treading on the north side run by an Irish gang led by a man named O'Hara, of whom Johnny is afraid. Tony's murder spree increases, he taking out anyone who stands in his and Johnny's way of absolute control on the south side, and in Tony's view absolute control of the entire city. Tony's actions place an unspoken strain between Tony and Johnny to the point of the two knowing that they can't exist in their idealized world with the other. Tony's ultimate downfall may be one of two women in his life: Poppy, Johnny's girlfriend to who Tony is attracted; and Tony's eighteen year old sister, Cesca, who is self-professed to be older mentally than her years much to Tony's chagrin, he who will do anything to protect her innocence. Cesca ultimately comes to the realization that she is a lot more similar to her brother than she first imagined.",
+    languages: [ 'English' ],
+    released: ISODate('1932-04-09T00:00:00.000Z'),
+    directors: [ 'Howard Hawks', 'Richard Rosson' ],
+    writers: [
+      'Armitage Trail (novel)',
+      'Ben Hecht (screen story)',
+      'Seton I. Miller (continuity)',
+      'John Lee Mahin (continuity)',
+      'W.R. Burnett (continuity)',
+      'Seton I. Miller (dialogue)',
+      'John Lee Mahin (dialogue)',
+      'W.R. Burnett (dialogue)'
+    ],
+    awards: { wins: 2, nominations: 0, text: '2 wins.' },
+    lastupdated: '2015-09-03 00:32:16.227000000',
+    year: 1932,
+    imdb: { rating: 7.8, votes: 18334, id: 23427 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.9, numReviews: 25579, meter: 86 },
+      dvd: ISODate('2007-05-22T00:00:00.000Z'),
+      critic: { rating: 8.7, numReviews: 34, meter: 100 },
+      lastUpdated: ISODate('2015-09-14T19:30:50.000Z'),
+      rotten: 0,
+      production: 'Universal Pictures',
+      fresh: 34
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9caa'),
+    plot: 'Many passengers on the Shanghai Express are more concerned that the notorious Shanghai Lil is on board than the fact that a civil war is going on that may make the trip take more than three...',
+    genres: [ 'Adventure', 'Drama', 'Romance' ],
+    runtime: 82,
+    rated: 'PASSED',
+    cast: [
+      'Marlene Dietrich',
+      'Clive Brook',
+      'Anna May Wong',
+      'Warner Oland'
+    ],
+    num_mflix_comments: 2,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMDc3ODRlZDktY2M2MC00Y2UxLWI1MWMtODkyYjI1NzQyNjIwXkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Shanghai Express',
+    fullplot: `Many passengers on the Shanghai Express are more concerned that the notorious Shanghai Lil is on board than the fact that a civil war is going on that may make the trip take more than three days. The British Army doctor, Donald Harvey, knew Lil before she became a famous "coaster." A fellow passenger defines a coaster as "a woman who lives by her wits along the China coast." When Chinese guerillas stop the train, Dr. Harvey is selected as the hostage. Lil saves him, but can she make him believe that she really hasn't changed from the woman he loved five years before?`,
+    languages: [ 'English', 'French', 'Cantonese', 'German' ],
+    released: ISODate('1932-02-12T00:00:00.000Z'),
+    directors: [ 'Josef von Sternberg' ],
+    writers: [
+      'Jules Furthman (screen play by)',
+      'Harry Hervey (based on the story by)'
+    ],
+    awards: {
+      wins: 0,
+      nominations: 3,
+      text: 'Won 1 Oscar. Another 2 nominations.'
+    },
+    lastupdated: '2015-08-09 00:18:18.943000000',
+    year: 1932,
+    imdb: { rating: 7.5, votes: 4288, id: 23458 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.9, numReviews: 1452, meter: 82 },
+      dvd: ISODate('1993-10-20T00:00:00.000Z'),
+      critic: { rating: 8.6, numReviews: 15, meter: 100 },
+      lastUpdated: ISODate('2015-09-10T19:14:21.000Z'),
+      rotten: 0,
+      production: 'Paramount Pictures',
+      fresh: 15
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9cce'),
+    plot: 'John has lead a solitary life for thirty years since the death of Moonyeen Clare. But now Owens, a close friend, insists that he care for his niece, Kathleen, orphaned when her parents were...',
+    genres: [ 'Drama', 'Romance' ],
+    runtime: 98,
+    rated: 'APPROVED',
+    cast: [
+      'Norma Shearer',
+      'Fredric March',
+      'Leslie Howard',
+      'O.P. Heggie'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BNDAyZjgyOTctMmI0OC00NjBhLTk5OGItYWZmMDBjMTMzNjg0XkEyXkFqcGdeQXVyNjE5MjUyOTM@._V1_SY1000_SX677_AL_.jpg',
+    title: "Smilin' Through",
+    fullplot: "John has lead a solitary life for thirty years since the death of Moonyeen Clare. But now Owens, a close friend, insists that he care for his niece, Kathleen, orphaned when her parents were lost at sea. Kathleen is five, but the years pass and now she is a young woman who is the image of Moonyeen. Willy wants Kathleen for his wife, but Sparks fly when she meets Kenneth Wayne one dark and stormy night. John is horrified for it was Wayne's father who shot Moonyeen dead on her wedding day and John has never found him or forgiven the family. When Ken goes off to war, John forbids any marriage and Ken agrees, while Kathleen does not. When Ken returns four years later when the war is over, he is crippled. He conceals his condition and makes plans to leave for America.",
+    languages: [ 'English' ],
+    released: ISODate('1932-09-24T00:00:00.000Z'),
+    directors: [ 'Sidney Franklin' ],
+    writers: [
+      'Jane Cowl (play)',
+      'James B. Fagan (dialogue)',
+      'Jane Murfin (play)',
+      'Donald Ogden Stewart (dialogue)',
+      'Ernest Vajda',
+      'Claudine West'
+    ],
+    awards: {
+      wins: 2,
+      nominations: 0,
+      text: 'Nominated for 1 Oscar. Another 1 win.'
+    },
+    lastupdated: '2015-04-19 00:49:42.517000000',
+    year: 1932,
+    imdb: { rating: 7, votes: 546, id: 23488 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.7, numReviews: 145, meter: 80 },
+      dvd: ISODate('1993-12-15T00:00:00.000Z'),
+      lastUpdated: ISODate('2015-07-04T19:20:43.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9d4a'),
+    plot: 'A condemned murderer, in the process of being executed, relives the events that led to his being sentenced to die in the electric chair.',
+    genres: [ 'Drama', 'Thriller' ],
+    runtime: 67,
+    cast: [
+      'Edward G. Robinson',
+      'Vivienne Osborne',
+      'Guy Kibbee',
+      'Preston Foster'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BZWFjM2JmYjQtODY3YS00M2Q1LTliNjctYmJjOWI0NzUwYjg5XkEyXkFqcGdeQXVyMjUxODE0MDY@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Two Seconds',
+    fullplot: 'Allen claims he his being executed for the wrong murder. Flashbacks show him working with Clark as a riveter. When he makes a killing on the horses he meets Shirley and gets married. When Clark tells him Shirley is unfaithful they fight and Clark falls to his death. Later he finds that Clark was telling the truth.',
+    languages: [ 'English' ],
+    released: ISODate('1932-05-28T00:00:00.000Z'),
+    directors: [ 'Mervyn LeRoy' ],
+    writers: [ 'Elliott Lester (play)', 'Harvey F. Thew (adaptation)' ],
+    awards: { wins: 1, nominations: 0, text: '1 win.' },
+    lastupdated: '2015-09-04 00:30:22.147000000',
+    year: 1932,
+    imdb: { rating: 6.9, votes: 528, id: 23629 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 3.6, numReviews: 105, meter: 75 },
+      production: 'Warner Bros.',
+      lastUpdated: ISODate('2015-08-27T18:01:11.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a1392f29313caabcd9d4f'),
+    plot: 'Two young brothers become the leaders of a gang of kids in their neighborhood. Their father is an office clerk who tries for advancement by playing up his boss. When the boys visit the boss...',
+    genres: [ 'Comedy', 'Drama' ],
+    runtime: 100,
+    metacritic: 91,
+    rated: 'NOT RATED',
+    cast: [
+      'Tatsuo Saitè',
+      'Tomio Aoki',
+      'Mitsuko Yoshikawa',
+      'Hideo Sugawara'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMzZkOTVjY2MtZDhlMS00MjUyLTkyZWUtZmMzYWY0MTRjNWQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_SX677_AL_.jpg',
+    title: 'I Was Born, But...',
+    fullplot: "Two young brothers become the leaders of a gang of kids in their neighborhood. Their father is an office clerk who tries for advancement by playing up his boss. When the boys visit the boss' house with their father, they discover that their dad has been making a fool of himself to please his boss, who's son is an outwitted member of the boys' gang. The brothers' revolt claiming that hierarchy should be based on ability, not on social background. Ozu's charming film is a social satire that draws from the antics of childhood as well as the tragedy of maturity.",
+    countries: [ 'Japan' ],
+    released: ISODate('1932-06-03T00:00:00.000Z'),
+    directors: [ 'Yasujirè Ozu' ],
+    writers: [
+      'Akira Fushimi (scenario)',
+      'Geibei Ibushiya (adaptation)',
+      'Yasujirè Ozu (idea)'
+    ],
+    awards: { wins: 1, nominations: 0, text: '1 win.' },
+    lastupdated: '2015-08-20 01:02:13.173000000',
+    year: 1932,
+    imdb: { rating: 8, votes: 2967, id: 23634 },
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 4.1, numReviews: 925, meter: 90 },
+      dvd: ISODate('2008-04-22T00:00:00.000Z'),
+      critic: { rating: 8, numReviews: 21, meter: 100 },
+      lastUpdated: ISODate('2015-08-14T18:49:33.000Z'),
+      rotten: 0,
+      production: 'Janus Films',
+      fresh: 21
+    }
+  }
+]
+my_store> db.movies.countDocuments({
+|   year: 1932,
+|   $or: [
+|     { genres: "Drama" },
+|     { languages: "French" }
+|   ]
+| })
+| 
+18
+my_store> db.movies.find({
+|   countries: "USA",
+|   "awards.wins": { $gte: 5, $lte: 9 },
+|   year: { $gte: 2012, $lte: 2014 }
+| })
+| 
+[
+  {
+    _id: ObjectId('573a13acf29313caabd29366'),
+    fullplot: "The manager of the negative assets sector of Life magazine, Walter Mitty, has been working for sixteen years for the magazine and has a tedious life, not going anywhere but from his home to his job and vice-versa. He is an escapist, daydreaming into a world of fantasy many times a day. Walter has a crush on the recently hired Cheryl Melhoff but he is too shy to invite her on a date and he is trying to contact her via online dating. The magazine is preparing to release its last printed edition and the loathsome manager of transition Ted Hendricks is preparing an inevitable downsizing over the next few days. Walter has been the liaison between the magazine and the mysterious independent photographer Sean O'Connell who has sent to him a package of negatives and a wallet as a gift for his work. Sean also suggests to the senior management the use of negative 25 for the cover of the last edition. However, Walter cannot find the negative that is missing. Walter has no means to contact Sean and finds a clue that he might be in Greenland. He decides to travel to Greenland to track Sean down in the beginning of an unbelievable adventure.",
+    imdb: { rating: 7.4, votes: 211230, id: 359950 },
+    year: 2013,
+    plot: 'When his job along with that of his co-worker are threatened, Walter takes action in the real world embarking on a global journey that turns into an adventure more extraordinary than anything he could have ever imagined.',
+    genres: [ 'Adventure', 'Comedy', 'Drama' ],
+    rated: 'PG',
+    metacritic: 54,
+    title: 'The Secret Life of Walter Mitty',
+    lastupdated: '2015-08-31 00:10:51.747000000',
+    languages: [ 'English', 'Spanish', 'Icelandic' ],
+    writers: [
+      'Steve Conrad (screenplay)',
+      'Steve Conrad (screen story by)',
+      'James Thurber (based on the short story by)'
+    ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://WalterMitty.com',
+      viewer: { rating: 3.7, numReviews: 77663, meter: 70 },
+      dvd: ISODate('2014-04-15T00:00:00.000Z'),
+      critic: { rating: 6, numReviews: 177, meter: 50 },
+      boxOffice: '$58.2M',
+      consensus: "It doesn't lack for ambition, but The Secret Life of Walter Mitty fails to back up its grand designs with enough substance to anchor the spectacle.",
+      rotten: 88,
+      production: '20th Century Fox',
+      lastUpdated: ISODate('2015-08-20T18:09:50.000Z'),
+      fresh: 89
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BODYwNDYxNDk1Nl5BMl5BanBnXkFtZTgwOTAwMTk2MDE@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 1,
+    released: ISODate('2013-12-25T00:00:00.000Z'),
+    awards: { wins: 6, nominations: 13, text: '6 wins & 13 nominations.' },
+    countries: [ 'USA', 'Canada' ],
+    cast: [ 'Ben Stiller', 'Kristen Wiig', 'Jon Daly', 'Kathryn Hahn' ],
+    directors: [ 'Ben Stiller' ],
+    runtime: 114
+  },
+  {
+    _id: ObjectId('573a13b5f29313caabd45772'),
+    plot: 'After their cave is destroyed, a caveman family must trek through an unfamiliar fantastical world with the help of an inventive boy.',
+    genres: [ 'Animation', 'Adventure', 'Comedy' ],
+    runtime: 98,
+    metacritic: 55,
+    rated: 'PG',
+    cast: [
+      'Nicolas Cage',
+      'Emma Stone',
+      'Ryan Reynolds',
+      'Catherine Keener'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTcyOTc2OTA1Ml5BMl5BanBnXkFtZTcwOTI1MjkzOQ@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'The Croods',
+    fullplot: "The Croods is a prehistoric comedy adventure that follows the world's first family as they embark on a journey of a lifetime when the cave that has always shielded them from danger is destroyed. Traveling across a spectacular landscape, the Croods discover an incredible new world filled with fantastic creatures -- and their outlook is changed forever.",
+    languages: [ 'English' ],
+    released: ISODate('2013-03-22T00:00:00.000Z'),
+    directors: [ 'Kirk De Micco', 'Chris Sanders' ],
+    writers: [
+      'Chris Sanders (screenplay)',
+      'Kirk De Micco (screenplay)',
+      'John Cleese (story)',
+      'Kirk De Micco (story)',
+      'Chris Sanders (story)'
+    ],
+    awards: {
+      wins: 8,
+      nominations: 39,
+      text: 'Nominated for 1 Oscar. Another 7 wins & 39 nominations.'
+    },
+    lastupdated: '2015-09-10 17:45:48.560000000',
+    year: 2013,
+    imdb: { rating: 7.3, votes: 134568, id: 481499 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.thecroodsmovie.com/',
+      viewer: { rating: 4, numReviews: 192270, meter: 78 },
+      dvd: ISODate('2013-10-01T00:00:00.000Z'),
+      critic: { rating: 6.5, numReviews: 134, meter: 70 },
+      boxOffice: '$187.2M',
+      consensus: 'While it may not be as (ahem) evolved as the best modern animated fare, The Croods will prove solidly entertaining for families seeking a fast-paced, funny cartoon adventure.',
+      rotten: 40,
+      production: '20th Century Fox',
+      lastUpdated: ISODate('2015-09-12T17:34:49.000Z'),
+      fresh: 94
+    }
+  },
+  {
+    _id: ObjectId('573a13b9f29313caabd4dd15'),
+    fullplot: `In 1938, the young girl Liesel Meminger is traveling by train with her mother and her younger brother when he dies. Her mother buries the boy in a cemetery by the tracks and Liesel picks up a book, "The Gravediggers Handbook", which was left on the grave of her brother and brings it with her. Liesel is delivered to a foster family in a small town and later she learns that her mother left her because she is a communist. Her stepmother, Rosa Hubermann, is a rude but caring woman and her stepfather, Hans Hubermann, is a simple kind-hearted man. Liesel befriends her next door neighbor, the boy Rudy Steiner, and they go together to the school. When Hans discovers that Liesel cannot read, he teaches her using her book and Liesel becomes an obsessed reader. During a Nazi speech where the locals are forced to burn books in a bonfire, Liesel recovers one book for her and the Major's wife Ilsa Hermann witnesses her action. Meanwhile Hans hides the Jewish Max Vandenburg, who is the son of a deceased friend that saved his life in the war, in the basement of his house and Liesel becomes his friend. One day, Rosa asks Liesel to deliver laundry to the Mayor and Ilsa invites Liesel to go to her library and tells that she can visit her to read whenever she wants. But in times of war there are many threats and the lives of Liesel, her family and friends will never be the same.`,
+    imdb: { rating: 7.6, votes: 86704, id: 816442 },
+    year: 2013,
+    plot: 'While subjected to the horrors of World War II Germany, young Liesel finds solace by stealing books and sharing them with others. In the basement of her home, a Jewish refugee is being sheltered by her adoptive parents.',
+    genres: [ 'Drama', 'War' ],
+    rated: 'PG-13',
+    metacritic: 53,
+    title: 'The Book Thief',
+    lastupdated: '2015-08-31 00:27:30.827000000',
+    languages: [ 'English', 'German' ],
+    writers: [
+      'Markus Zusak (based on the novel by)',
+      'Michael Petroni (screenplay)'
+    ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.thebookthief.com/',
+      viewer: { rating: 3.8, numReviews: 49467, meter: 74 },
+      dvd: ISODate('2014-03-11T00:00:00.000Z'),
+      critic: { rating: 5.6, numReviews: 134, meter: 46 },
+      boxOffice: '$21.5M',
+      consensus: 'A bit too safe in its handling of its Nazi Germany setting, The Book Thief counters its constraints with a respectful tone and strong performances.',
+      rotten: 73,
+      production: '20th Century Fox',
+      lastUpdated: ISODate('2015-09-15T17:07:08.000Z'),
+      fresh: 61
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BOTE3NzkyMjAyNF5BMl5BanBnXkFtZTgwMDc5MTE0MDE@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 2,
+    released: ISODate('2013-11-27T00:00:00.000Z'),
+    awards: {
+      wins: 6,
+      nominations: 14,
+      text: 'Nominated for 1 Oscar. Another 5 wins & 14 nominations.'
+    },
+    countries: [ 'USA', 'Germany' ],
+    cast: [
+      'Roger Allam',
+      'Sophie Nèlisse',
+      'Heike Makatsch',
+      'Julian Lehmann'
+    ],
+    directors: [ 'Brian Percival' ],
+    runtime: 131
+  },
+  {
+    _id: ObjectId('573a13b9f29313caabd4de39'),
+    plot: 'United Nations employee Gerry Lane traverses the world in a race against time to stop the Zombie pandemic that is toppling armies and governments, and threatening to destroy humanity itself.',
+    genres: [ 'Action', 'Adventure', 'Horror' ],
+    runtime: 116,
+    metacritic: 63,
+    rated: 'PG-13',
+    cast: [
+      'Brad Pitt',
+      'Mireille Enos',
+      'Daniella Kertesz',
+      'James Badge Dale'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SY1000_SX677_AL_.jpg',
+    title: 'World War Z',
+    fullplot: 'Life for former United Nations investigator Gerry Lane and his family seems content. Suddenly, the world is plagued by a mysterious infection turning whole human populations into rampaging mindless zombies. After barely escaping the chaos, Lane is persuaded to go on a mission to investigate this disease. What follows is a perilous trek around the world where Lane must brave horrific dangers and long odds to find answers before human civilization falls.',
+    languages: [ 'English', 'Spanish', 'Hebrew', 'Arabic' ],
+    released: ISODate('2013-06-21T00:00:00.000Z'),
+    directors: [ 'Marc Forster' ],
+    writers: [
+      'Matthew Michael Carnahan (screenplay)',
+      'Drew Goddard (screenplay)',
+      'Damon Lindelof (screenplay)',
+      'Matthew Michael Carnahan (screen story)',
+      'J. Michael Straczynski (screen story)',
+      'Max Brooks (based on the novel by)'
+    ],
+    awards: { wins: 5, nominations: 19, text: '5 wins & 19 nominations.' },
+    lastupdated: '2015-09-10 17:37:02.647000000',
+    year: 2013,
+    imdb: { rating: 7, votes: 413867, id: 816711 },
+    countries: [ 'USA', 'Malta' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://tinyurl.com/oo4f7jj',
+      viewer: { rating: 3.7, numReviews: 302725, meter: 72 },
+      dvd: ISODate('2013-09-17T00:00:00.000Z'),
+      critic: { rating: 6.2, numReviews: 252, meter: 67 },
+      boxOffice: '$202.4M',
+      consensus: "It's uneven and diverges from the source book, but World War Z still brings smart, fast-moving thrills and a solid performance from Brad Pitt to the zombie genre.",
+      rotten: 82,
+      production: 'Paramount Pictures',
+      lastUpdated: ISODate('2015-08-20T18:19:13.000Z'),
+      fresh: 170
+    }
+  },
+  {
+    _id: ObjectId('573a13b9f29313caabd4f21f'),
+    fullplot: "In 1999, the Janjira nuclear plant was mysteriously destroyed with most hands lost including supervisor Joe Brody's colleague and wife, Sandra. Years later, Joe's son, Ford, a US Navy ordnance disposal officer, must go to Japan to help his estranged father who obsessively searches for the truth of the incident. In doing so, father and son discover the disaster's secret cause on the wreck's very grounds. This enables them to witness the reawakening of a terrible threat to all of Humanity, which is made all the worse with a second secret revival elsewhere. Against this cataclysm, the only hope for the world may be Godzilla, but the challenge for the King of the Monsters will be great even as Humanity struggles to understand the destructive ally they have.",
+    imdb: { rating: 6.5, votes: 274142, id: 831387 },
+    year: 2014,
+    plot: 'The world is beset by the appearance of monstrous creatures, but one of them may be the only one who can save humanity.',
+    genres: [ 'Action', 'Adventure', 'Sci-Fi' ],
+    rated: 'PG-13',
+    metacritic: 62,
+    title: 'Godzilla',
+    lastupdated: '2015-08-31 00:01:08.170000000',
+    languages: [ 'English', 'Japanese' ],
+    writers: [ 'Max Borenstein (screenplay)', 'Dave Callaham (story)' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://godzillamovie.com',
+      viewer: { rating: 3.6, numReviews: 173504, meter: 67 },
+      dvd: ISODate('2014-09-16T00:00:00.000Z'),
+      critic: { rating: 6.6, numReviews: 279, meter: 74 },
+      boxOffice: '$200.7M',
+      consensus: "With just enough human drama to anchor the sweeping spectacle of giant monsters smashing everything in sight, Gareth Edwards' Godzilla satisfyingly restores the franchise's fire-breathing glory.",
+      rotten: 73,
+      production: 'Warner Bros Pictures',
+      lastUpdated: ISODate('2015-08-18T18:20:33.000Z'),
+      fresh: 206
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BN2E4ZDgxN2YtZjExMS00MWE5LTg3NjQtNTkxMzJhOTA3MDQ4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 2,
+    released: ISODate('2014-05-16T00:00:00.000Z'),
+    awards: { wins: 7, nominations: 24, text: '7 wins & 24 nominations.' },
+    countries: [ 'USA', 'Japan' ],
+    cast: [
+      'Aaron Taylor-Johnson',
+      'CJ Adams',
+      'Ken Watanabe',
+      'Bryan Cranston'
+    ],
+    directors: [ 'Gareth Edwards' ],
+    runtime: 123
+  },
+  {
+    _id: ObjectId('573a13bbf29313caabd5271d'),
+    plot: 'The story of the 1973 hockey season when aging legend Gordie Howe returned to the ice at the age of 44.',
+    genres: [ 'Biography', 'Drama', 'Sport' ],
+    countries: [ 'USA' ],
+    rated: 'PG',
+    cast: [
+      'Michael Shanks',
+      'Kathleen Robertson',
+      'Martin Cummins',
+      'Dylan Playfair'
+    ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTY1NzkwNDc5MV5BMl5BanBnXkFtZTgwMTg0MTA2MDE@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Mr Hockey: The Gordie Howe Story',
+    fullplot: 'The story of the 1973 hockey season when aging legend Gordie Howe returned to the ice at the age of 44.',
+    languages: [ 'English' ],
+    released: ISODate('2013-05-04T00:00:00.000Z'),
+    directors: [ 'Andy Mikita' ],
+    writers: [ 'Malcolm MacRury' ],
+    awards: { wins: 5, nominations: 5, text: '5 wins & 5 nominations.' },
+    lastupdated: '2015-09-04 00:02:34.833000000',
+    year: 2013,
+    imdb: { rating: 6.9, votes: 529, id: 883391 },
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 2.2, numReviews: 289, meter: 23 },
+      dvd: ISODate('2009-03-10T00:00:00.000Z'),
+      website: 'http://www.darkreel.com/',
+      production: 'Barhotltz Entertainment',
+      lastUpdated: ISODate('2015-08-18T18:05:42.000Z')
+    }
+  },
+  {
+    _id: ObjectId('573a13bcf29313caabd57341'),
+    fullplot: "In 1959, Alfred Hitchcock and his wife, Alma, are at the top of their creative game as filmmakers amid disquieting insinuations about it being time to retire. To recapture his youth's artistic daring, Alfred decides his next film will adapt the lurid horror novel, Psycho, over everyone's misgivings. Unfortunately, as Alfred self-finances and labors on this film, Alma finally loses patience with his roving eye and controlling habits with his actresses. When an ambitious friend lures her to collaborate on a work of their own, the resulting marital tension colors Alfred's work even as the novel's inspiration haunts his dreams.",
+    imdb: { rating: 6.9, votes: 56259, id: 975645 },
+    year: 2012,
+    plot: 'A love story between influential filmmaker Alfred Hitchcock and wife Alma Reville during the filming of Psycho (1960) in 1959.',
+    genres: [ 'Biography', 'Drama' ],
+    rated: 'PG-13',
+    metacritic: 55,
+    title: 'Hitchcock',
+    lastupdated: '2015-09-04 00:33:35.553000000',
+    languages: [ 'English' ],
+    writers: [ 'John J. McLaughlin (screenplay)', 'Stephen Rebello (book)' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.hitchcockthemovie.com/',
+      viewer: { rating: 3.5, numReviews: 28824, meter: 60 },
+      dvd: ISODate('2013-03-12T00:00:00.000Z'),
+      critic: { rating: 6.2, numReviews: 196, meter: 62 },
+      boxOffice: '$6.0M',
+      consensus: 'Though it suffers from tonal inconsistency and a lack of truly insightful retrospection, Hitchcock is elevated by inspired performances from its two distinguished leads.',
+      rotten: 75,
+      production: 'Fox Searchlight Pictures',
+      lastUpdated: ISODate('2015-09-12T18:37:54.000Z'),
+      fresh: 121
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BODAwNDI5NjIwN15BMl5BanBnXkFtZTcwNjc4ODc2OA@@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 2,
+    released: ISODate('2012-12-14T00:00:00.000Z'),
+    awards: {
+      wins: 6,
+      nominations: 23,
+      text: 'Nominated for 1 Oscar. Another 5 wins & 23 nominations.'
+    },
+    countries: [ 'USA', 'UK' ],
+    cast: [
+      'Anthony Hopkins',
+      'Helen Mirren',
+      'Scarlett Johansson',
+      'Danny Huston'
+    ],
+    directors: [ 'Sacha Gervasi' ],
+    runtime: 98
+  },
+  {
+    _id: ObjectId('573a13bef29313caabd5d9c2'),
+    fullplot: 'Marcus Luttrell, a Navy Seal, and his team set out on a mission to capture or kill notorious Taliban leader Ahmad Shah, in late June 2005. After running into mountain herders and capturing them, they were left with no choice but to follow their rules of engagement or be imprisoned. Now Marcus and his team are left to fight for their lives in one of the most valiant efforts of modern warfare.',
+    imdb: { rating: 7.6, votes: 177772, id: 1091191 },
+    year: 2013,
+    plot: 'Marcus Luttrell and his team set out on a mission to capture or kill notorious Taliban leader Ahmad Shah, in late June 2005. Marcus and his team are left to fight for their lives in one of the most valiant efforts of modern warfare.',
+    genres: [ 'Action', 'Biography', 'Drama' ],
+    rated: 'R',
+    metacritic: 60,
+    title: 'Lone Survivor',
+    lastupdated: '2015-09-04 00:33:33.273000000',
+    languages: [ 'English', 'Pushto' ],
+    writers: [
+      'Peter Berg',
+      'Marcus Luttrell (book)',
+      'Patrick Robinson (book)'
+    ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.lonesurvivorfilm.com/',
+      viewer: { rating: 4.2, numReviews: 111111, meter: 87 },
+      dvd: ISODate('2014-06-03T00:00:00.000Z'),
+      critic: { rating: 6.6, numReviews: 202, meter: 75 },
+      boxOffice: '$125.1M',
+      consensus: 'A true account of military courage and survival, Lone Survivor wields enough visceral power to mitigate its heavy-handed jingoism.',
+      rotten: 50,
+      production: 'Universal Studios',
+      lastUpdated: ISODate('2015-09-10T17:23:29.000Z'),
+      fresh: 152
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BMjA0NTgwOTk5Ml5BMl5BanBnXkFtZTcwMjE3NDc5OQ@@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 1,
+    released: ISODate('2014-01-10T00:00:00.000Z'),
+    awards: {
+      wins: 7,
+      nominations: 14,
+      text: 'Nominated for 2 Oscars. Another 5 wins & 14 nominations.'
+    },
+    countries: [ 'USA' ],
+    cast: [ 'Mark Wahlberg', 'Taylor Kitsch', 'Emile Hirsch', 'Ben Foster' ],
+    directors: [ 'Peter Berg' ],
+    runtime: 121
+  },
+  {
+    _id: ObjectId('573a13c1f29313caabd63af2'),
+    plot: "The true story of Paul Potts, a shy, bullied shop assistant by day and an amateur opera singer by night who became a phenomenon after being chosen for -- and ultimately winning -- Britain's Got Talent (2007).",
+    genres: [ 'Biography', 'Comedy', 'Drama' ],
+    runtime: 103,
+    metacritic: 52,
+    rated: 'PG-13',
+    cast: [
+      'James Corden',
+      'Alexandra Roach',
+      'Julie Walters',
+      'Colm Meaney'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTA5MzQxMzEzOTVeQTJeQWpwZ15BbWU4MDY2NzM5NzIx._V1_SY1000_SX677_AL_.jpg',
+    title: 'One Chance',
+    fullplot: "The true story of Paul Potts, a shy, bullied shop assistant by day and an amateur opera singer by night who became a phenomenon after being chosen for -- and ultimately winning -- Britain's Got Talent (2007).",
+    languages: [ 'English' ],
+    released: ISODate('2013-10-25T00:00:00.000Z'),
+    directors: [ 'David Frankel' ],
+    writers: [ 'Justin Zackham (screenplay)' ],
+    awards: {
+      wins: 5,
+      nominations: 3,
+      text: 'Nominated for 1 Golden Globe. Another 4 wins & 3 nominations.'
+    },
+    lastupdated: '2015-09-10 17:09:12.410000000',
+    year: 2013,
+    imdb: { rating: 6.7, votes: 6334, id: 1196956 },
+    countries: [ 'UK', 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.weinsteinco.com/',
+      viewer: { rating: 3.6, numReviews: 8335, meter: 66 },
+      critic: { rating: 5.6, numReviews: 56, meter: 63 },
+      boxOffice: '$89.7k',
+      consensus: 'Predictable and sentimental, yet thoroughly agreeable, One Chance is an unapologetic crowd-pleaser that achieves its admittedly modest goals.',
+      rotten: 21,
+      production: 'The Weinstein Company',
+      lastUpdated: ISODate('2015-09-16T18:11:17.000Z'),
+      fresh: 35
+    }
+  },
+  {
+    _id: ObjectId('573a13c1f29313caabd648d3'),
+    fullplot: 'In the 1930s, an elderly Tonto tells a young boy the tale of John Reid, the Lone Ranger. An idealistic lawyer, he rides with his brother and fellow Texas Rangers in pursuit of the notorious Butch Cavendish. Ambushed by the outlaw and left for dead, John Reid is rescued by the renegade Comanche, Tonto, at the insistence of a mysterious white horse and offers to help him to bring Cavendish to justice. Becoming a reluctant masked rider with a seemingly incomprehensible partner, Reid pursues the criminal against all obstacles. However, John and Tonto learn that Cavendish is only part of a far greater injustice and the pair must fight it in an adventure that would make them a legend.',
+    imdb: { rating: 6.5, votes: 166042, id: 1210819 },
+    year: 2013,
+    plot: 'Native American warrior Tonto recounts the untold tales that transformed John Reid, a man of the law, into a legend of justice.',
+    genres: [ 'Action', 'Adventure', 'Western' ],
+    rated: 'PG-13',
+    metacritic: 37,
+    title: 'The Lone Ranger',
+    lastupdated: '2015-08-31 00:07:58.123000000',
+    languages: [ 'English', 'North American Indian' ],
+    writers: [
+      'Justin Haythe (screenplay)',
+      'Ted Elliott (screenplay)',
+      'Terry Rossio (screenplay)',
+      'Ted Elliott (screen story)',
+      'Terry Rossio (screen story)',
+      'Justin Haythe (screen story)'
+    ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://disney.go.com/the-lone-ranger/',
+      viewer: { rating: 3.3, numReviews: 136197, meter: 51 },
+      dvd: ISODate('2013-12-17T00:00:00.000Z'),
+      critic: { rating: 4.9, numReviews: 220, meter: 31 },
+      boxOffice: '$89.3M',
+      consensus: "Armie Hammer and Johnny Depp make for an appealing pair of leads, but they're not enough to make up for The Lone Ranger's bland script, bloated length, and blaring action overkill.",
+      rotten: 151,
+      production: 'Walt Disney Pictures',
+      lastUpdated: ISODate('2015-09-16T17:48:13.000Z'),
+      fresh: 69
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BZjFiMTc2MTAtZDA0My00OGRmLTk5M2ItNTlmYTUwZmU2YmRiXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 1,
+    released: ISODate('2013-07-03T00:00:00.000Z'),
+    awards: {
+      wins: 6,
+      nominations: 19,
+      text: 'Nominated for 2 Oscars. Another 4 wins & 19 nominations.'
+    },
+    countries: [ 'USA' ],
+    cast: [
+      'Johnny Depp',
+      'Armie Hammer',
+      'William Fichtner',
+      'Tom Wilkinson'
+    ],
+    directors: [ 'Gore Verbinski' ],
+    runtime: 149
+  },
+  {
+    _id: ObjectId('573a13c1f29313caabd64b93'),
+    fullplot: "20 years after attempting an epic pub crawl, five childhood friends reunite when one of them becomes hell bent on trying the drinking marathon again. They are convinced to stage an encore by mate Gary King, a 40-year old man trapped at the cigarette end of his teens, who drags his reluctant pals to their home town and once again attempts to reach the fabled pub, The World's End. As they attempt to reconcile the past and present, they realize the real struggle is for the future, not just theirs but humankind's. Reaching The World's End is the least of their worries.",
+    imdb: { rating: 7, votes: 160063, id: 1213663 },
+    year: 2013,
+    plot: "Five friends who reunite in an attempt to top their epic pub crawl from 20 years earlier unwittingly become humankind's only hope for survival.",
+    genres: [ 'Action', 'Comedy', 'Sci-Fi' ],
+    rated: 'R',
+    metacritic: 81,
+    title: "The World's End",
+    lastupdated: '2015-08-22 00:45:24.563000000',
+    languages: [ 'English' ],
+    writers: [ 'Simon Pegg', 'Edgar Wright' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.facebook.com/theworldsendmovie',
+      viewer: { rating: 3.7, numReviews: 90504, meter: 71 },
+      dvd: ISODate('2013-11-19T00:00:00.000Z'),
+      critic: { rating: 7.5, numReviews: 201, meter: 89 },
+      boxOffice: '$26.0M',
+      consensus: "Madcap and heartfelt, Edgar Wright's apocalypse comedy The World's End benefits from the typically hilarious Simon Pegg and Nick Frost, with a plethora of supporting players.",
+      rotten: 22,
+      production: 'Focus Features',
+      lastUpdated: ISODate('2015-08-26T18:03:06.000Z'),
+      fresh: 179
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BNzA1MTk1MzY0OV5BMl5BanBnXkFtZTgwNjkzNTUwMDE@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 1,
+    released: ISODate('2013-08-23T00:00:00.000Z'),
+    awards: { wins: 7, nominations: 16, text: '7 wins & 16 nominations.' },
+    countries: [ 'UK', 'USA', 'Japan' ],
+    cast: [
+      'Thomas Law',
+      'Zachary Bailess',
+      'Jasper Levine',
+      'James Tarpey'
+    ],
+    directors: [ 'Edgar Wright' ],
+    runtime: 109
+  },
+  {
+    _id: ObjectId('573a13c1f29313caabd65df8'),
+    fullplot: "While still in his teens, Donny (Adam Sandler) fathered a son, Todd (Andy Samberg), and raised him as a single parent up until Todd's 18th birthday. Now, after not seeing each other for years, Todd's world comes crashing down on the eve of his wedding when an uninvited Donny suddenly shows up. Trying desperately to reconnect with his son, Donny is now forced to deal with the repercussions of his bad parenting skills.",
+    imdb: { rating: 5.6, votes: 65043, id: 1232200 },
+    year: 2012,
+    plot: "While in his teens, Donny fathered a son, Todd, and raised him as a single parent up until Todd's 18th birthday. Now, after not seeing each other for years, Todd's world comes crashing down when Donny resurfaces just before Todd's wedding.",
+    genres: [ 'Comedy' ],
+    rated: 'R',
+    metacritic: 31,
+    title: "That's My Boy",
+    lastupdated: '2015-09-01 00:19:51.270000000',
+    languages: [ 'English' ],
+    writers: [ 'David Caspe' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://thatsmyboy-movie.com/',
+      viewer: { rating: 3.2, numReviews: 120938, meter: 52 },
+      dvd: ISODate('2012-10-16T00:00:00.000Z'),
+      critic: { rating: 3.4, numReviews: 113, meter: 20 },
+      boxOffice: '$36.9M',
+      consensus: "While it does represent a new foray into raunch for the normally PG-13 Sandler, That's My Boy finds him repeating himself to diminishing effect - and dragging Andy Samberg down with him.",
+      rotten: 90,
+      production: 'Sony Pictures',
+      lastUpdated: ISODate('2015-09-16T17:37:21.000Z'),
+      fresh: 23
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTM3NDMyNzgzMV5BMl5BanBnXkFtZTcwMjIyMTA1Nw@@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 2,
+    released: ISODate('2012-06-15T00:00:00.000Z'),
+    awards: { wins: 6, nominations: 10, text: '6 wins & 10 nominations.' },
+    countries: [ 'USA' ],
+    cast: [
+      'Adam Sandler',
+      'Andy Samberg',
+      'Leighton Meester',
+      'Vanilla Ice'
+    ],
+    directors: [ 'Sean Anders' ],
+    runtime: 116
+  },
+  {
+    _id: ObjectId('573a13c1f29313caabd65e49'),
+    plot: 'A pair of underachieving cops are sent back to a local high school to blend in and bring down a synthetic drug ring.',
+    genres: [ 'Action', 'Comedy', 'Crime' ],
+    runtime: 109,
+    metacritic: 69,
+    rated: 'R',
+    cast: [ 'Jonah Hill', 'Channing Tatum', 'Brie Larson', 'Dave Franco' ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTc3NzQ3OTg3NF5BMl5BanBnXkFtZTcwMjk5OTcxNw@@._V1_SY1000_SX677_AL_.jpg',
+    title: '21 Jump Street',
+    fullplot: 'In high school, Schmidt (Jonah Hill) was a dork and Jenko (Channing Tatum) was the popular jock. After graduation, both of them joined the police force and ended up as partners riding bicycles in the city park. Since they are young and look like high school students, they are assigned to an undercover unit to infiltrate a drug ring that is supplying high school students synthetic drugs.',
+    languages: [ 'English' ],
+    released: ISODate('2012-03-16T00:00:00.000Z'),
+    directors: [ 'Phil Lord', 'Christopher Miller' ],
+    writers: [
+      'Michael Bacall (screenplay)',
+      'Michael Bacall (story)',
+      'Jonah Hill (story)',
+      'Patrick Hasburgh (television series)',
+      'Stephen J. Cannell (television series)'
+    ],
+    awards: { wins: 8, nominations: 20, text: '8 wins & 20 nominations.' },
+    lastupdated: '2015-09-10 17:13:00.867000000',
+    year: 2012,
+    imdb: { rating: 7.2, votes: 369346, id: 1232829 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.21jumpstreet-movie.com/site/',
+      viewer: { rating: 4, numReviews: 254679, meter: 82 },
+      dvd: ISODate('2012-06-26T00:00:00.000Z'),
+      critic: { rating: 7.2, numReviews: 209, meter: 85 },
+      boxOffice: '$138.4M',
+      consensus: "A smart, affectionate satire of '80s nostalgia and teen movie tropes, 21 Jump Street offers rowdy mainstream comedy with a surprisingly satisfying bite.",
+      rotten: 32,
+      production: 'Sony Pictures',
+      lastUpdated: ISODate('2015-09-12T18:07:46.000Z'),
+      fresh: 177
+    }
+  },
+  {
+    _id: ObjectId('573a13c2f29313caabd66592'),
+    plot: 'A stifled, small-town man stuck in a dead end life, runs away to Mexico to be a mariachi singer. MARIACHI GRINGO is a musical tour-de-force exploring the reality of "following your dreams" ...',
+    genres: [ 'Comedy', 'Romance' ],
+    runtime: 107,
+    metacritic: 42,
+    cast: [
+      'Shawn Ashmore',
+      'Martha Higareda',
+      'Kate Burton',
+      'Adriana Barraza'
+    ],
+    num_mflix_comments: 1,
+    poster: 'https://m.media-amazon.com/images/M/MV5BODU5MDQ3NzgxNl5BMl5BanBnXkFtZTgwMTIyNzE5MTE@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Mariachi Gringo',
+    fullplot: 'A stifled, small-town man stuck in a dead end life, runs away to Mexico to be a mariachi singer. MARIACHI GRINGO is a musical tour-de-force exploring the reality of "following your dreams" across cultural, personal, social and geographical borders.',
+    languages: [ 'English', 'Spanish' ],
+    released: ISODate('2013-05-10T00:00:00.000Z'),
+    directors: [ 'Tom Gustafson' ],
+    writers: [ 'Cory Krueckeberg' ],
+    awards: { wins: 5, nominations: 0, text: '5 wins.' },
+    lastupdated: '2015-09-02 00:39:31.413000000',
+    year: 2012,
+    imdb: { rating: 6.1, votes: 313, id: 1239374 },
+    countries: [ 'USA', 'Mexico' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.elmariachigringo.com/',
+      viewer: { rating: 3.8, numReviews: 105, meter: 71 },
+      dvd: ISODate('2013-04-01T00:00:00.000Z'),
+      critic: { rating: 5, numReviews: 7, meter: 43 },
+      lastUpdated: ISODate('2015-08-22T18:04:00.000Z'),
+      rotten: 4,
+      production: 'Independent Pictures',
+      fresh: 3
+    }
+  },
+  {
+    _id: ObjectId('573a13c3f29313caabd6a560'),
+    plot: 'A murder in 1944 draws together the great poets of the beat generation: Allen Ginsberg, Jack Kerouac and William Burroughs.',
+    genres: [ 'Biography', 'Drama', 'Romance' ],
+    runtime: 104,
+    metacritic: 65,
+    rated: 'R',
+    cast: [
+      'Daniel Radcliffe',
+      'Dane DeHaan',
+      'Michael C. Hall',
+      'Jack Huston'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMjA4MzAxMTE1N15BMl5BanBnXkFtZTgwMDY2OTIxMDE@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Kill Your Darlings',
+    fullplot: 'In the early 1940s, Allen Ginsberg is an English major at Columbia University, only to learn more than he bargained for. Dissatisfied by the orthodox attitudes of the school, Allen finds himself drawn to iconoclastic colleagues like Lucien Carr, William S. Burroughs and Jack Kerouac. Together, this gang would explore bold new literary ideas that would challenge the sensibilities of their time as the future Beat Generation. However, for all their creativity, their very appetites and choices lead to more serious transgressions that would mark their lives forever.',
+    languages: [ 'English' ],
+    released: ISODate('2013-09-19T00:00:00.000Z'),
+    directors: [ 'John Krokidas' ],
+    writers: [
+      'Austin Bunn (screenplay)',
+      'Austin Bunn (story)',
+      'John Krokidas (screenplay)'
+    ],
+    awards: { wins: 5, nominations: 11, text: '5 wins & 11 nominations.' },
+    lastupdated: '2015-08-16 00:14:43.400000000',
+    year: 2013,
+    imdb: { rating: 6.5, votes: 21501, id: 1311071 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://sonyclassics.com/killyourdarlings/',
+      viewer: { rating: 3.4, numReviews: 18331, meter: 60 },
+      dvd: ISODate('2014-03-18T00:00:00.000Z'),
+      critic: { rating: 6.6, numReviews: 131, meter: 76 },
+      boxOffice: '$1.0M',
+      consensus: 'Bolstered by the tremendous chemistry between Daniel Radcliffe and Dane DeHaan, Kill Your Darlings casts a vivid spotlight on an early chapter in the story of the Beat Generation.',
+      rotten: 32,
+      production: 'Sony Pictures Classics',
+      lastUpdated: ISODate('2015-08-20T18:11:41.000Z'),
+      fresh: 99
+    }
+  },
+  {
+    _id: ObjectId('573a13c3f29313caabd6b522'),
+    fullplot: `Logan is a marine serving in Iraq. While there, he finds a photo of a girl with "keep safe" written on the back. He is admiring it when his unit is attacked. He survives and credits the photo for saving him. He tries to find the owner but can't, assuming he was killed. When he goes back to the States, he finds it difficult to adjust and is still haunted by what happened. Analyzing the photo, he finds in the background a landmark that tells him she is in Louisiana. He then goes there and finds her. He learns her name is Beth. He tries to tell her what happened but can't get the words out. She assumes he's there to apply for the job they advertised looking for someone to help at her family's business, a dog kennel. He says yes but at first she gets an uneasy feeling from him but her grandmother decides to give him a chance. It isn't long that he makes a connection with her son. He then discovers that it was her brother who had the picture only he doesn't remember him. He sees that her brother's death has a profound effect on her. Eventually they get close which makes her grandmother happy but not her ex who is a deputy sheriff who's always threatening to take their son away from her.`,
+    imdb: { rating: 6.5, votes: 66004, id: 1327194 },
+    year: 2012,
+    plot: 'A Marine travels to Louisiana after serving three tours in Iraq and searches for the unknown woman he believes was his good luck charm during the war.',
+    genres: [ 'Drama', 'Romance' ],
+    rated: 'PG-13',
+    metacritic: 39,
+    title: 'The Lucky One',
+    lastupdated: '2015-08-23 00:06:07.030000000',
+    languages: [ 'English' ],
+    writers: [ 'Will Fetters (screenplay)', 'Nicholas Sparks (novel)' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://theluckyonemovie.warnerbros.com/index.html',
+      viewer: { rating: 3.7, numReviews: 193308, meter: 67 },
+      dvd: ISODate('2012-08-28T00:00:00.000Z'),
+      critic: { rating: 4.2, numReviews: 141, meter: 20 },
+      boxOffice: '$60.4M',
+      consensus: 'While it provides the requisite amount of escapist melodrama, The Lucky One ultimately relies on too many schmaltzy clichès to appeal to anyone not already familiar with the Nicholas Sparks formula.',
+      rotten: 113,
+      production: 'Warner Bros. Pictures',
+      lastUpdated: ISODate('2015-09-13T18:06:06.000Z'),
+      fresh: 28
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTg5NDk3MjAzMF5BMl5BanBnXkFtZTcwMjUyNzExNw@@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 3,
+    released: ISODate('2012-04-20T00:00:00.000Z'),
+    awards: { wins: 6, nominations: 7, text: '6 wins & 7 nominations.' },
+    countries: [ 'USA' ],
+    cast: [
+      'Zac Efron',
+      'Taylor Schilling',
+      'Blythe Danner',
+      'Riley Thomas Stewart'
+    ],
+    directors: [ 'Scott Hicks' ],
+    runtime: 101
+  },
+  {
+    _id: ObjectId('573a13c5f29313caabd6fcf7'),
+    plot: 'As the Large Hadron Collider is about to be launched for the first time, physicists are on the cusp of the greatest scientific discovery of all time -- or perhaps their greatest failure.',
+    genres: [ 'Documentary' ],
+    runtime: 99,
+    metacritic: 87,
+    cast: [
+      'Martin Aleksa',
+      'Nima Arkani-Hamed',
+      'Savas Dimopoulos',
+      'Monica Dunford'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BODg3MTM3NTY1OF5BMl5BanBnXkFtZTcwNDg5NTM2OQ@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Particle Fever',
+    fullplot: 'As the Large Hadron Collider is about to be launched for the first time, physicists are on the cusp of the greatest scientific discovery of all time -- or perhaps their greatest failure.',
+    languages: [ 'English' ],
+    released: ISODate('2014-09-03T00:00:00.000Z'),
+    directors: [ 'Mark Levinson' ],
+    awards: { wins: 5, nominations: 3, text: '5 wins & 3 nominations.' },
+    lastupdated: '2015-09-15 05:15:13.053000000',
+    year: 2013,
+    imdb: { rating: 7.4, votes: 4074, id: 1385956 },
+    countries: [ 'USA' ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://particlefever.com/',
+      viewer: { rating: 4, numReviews: 4752, meter: 84 },
+      critic: { rating: 7.9, numReviews: 44, meter: 95 },
+      boxOffice: '$0.9M',
+      consensus: 'The concepts behind its heady subject matter may fly over the heads of most viewers, but Particle Fever presents it in such a way that even the least science-inclined viewers will find themselves enraptured.',
+      rotten: 2,
+      production: 'BOND360',
+      lastUpdated: ISODate('2015-08-19T18:28:14.000Z'),
+      fresh: 42
+    }
+  },
+  {
+    _id: ObjectId('573a13c5f29313caabd714a6'),
+    fullplot: 'When the crew of the Enterprise is called back home, they find an unstoppable force of terror from within their own organization has detonated the fleet and everything it stands for, leaving our world in a state of crisis. With a personal score to settle, Captain Kirk leads a manhunt to a war-zone world to capture a one-man weapon of mass destruction. As our heroes are propelled into an epic chess game of life and death, love will be challenged, friendships will be torn apart, and sacrifices must be made for the only family Kirk has left: his crew.',
+    imdb: { rating: 7.8, votes: 361747, id: 1408101 },
+    year: 2013,
+    plot: 'After the crew of the Enterprise find an unstoppable force of terror from within their own organization, Captain Kirk leads a manhunt to a war-zone world to capture a one-man weapon of mass destruction.',
+    genres: [ 'Action', 'Adventure', 'Sci-Fi' ],
+    rated: 'PG-13',
+    metacritic: 72,
+    title: 'Star Trek Into Darkness',
+    lastupdated: '2015-09-10 17:46:02.550000000',
+    languages: [ 'English', 'Klingon' ],
+    writers: [
+      'Roberto Orci',
+      'Alex Kurtzman',
+      'Damon Lindelof',
+      'Gene Roddenberry (television series "Star Trek")'
+    ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.startrekmovie.com/',
+      viewer: { rating: 4.2, numReviews: 308990, meter: 90 },
+      dvd: ISODate('2013-09-10T00:00:00.000Z'),
+      critic: { rating: 7.6, numReviews: 249, meter: 87 },
+      boxOffice: '$228.8M',
+      consensus: "Visually spectacular and suitably action packed, Star Trek Into Darkness is a rock-solid installment in the venerable sci-fi franchise, even if it's not as fresh as its predecessor.",
+      rotten: 33,
+      production: 'Paramount',
+      lastUpdated: ISODate('2015-09-12T17:20:07.000Z'),
+      fresh: 216
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTk2NzczOTgxNF5BMl5BanBnXkFtZTcwODQ5ODczOQ@@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 1,
+    released: ISODate('2013-05-16T00:00:00.000Z'),
+    awards: {
+      wins: 9,
+      nominations: 42,
+      text: 'Nominated for 1 Oscar. Another 8 wins & 42 nominations.'
+    },
+    countries: [ 'USA' ],
+    cast: [ 'Chris Pine', 'Zachary Quinto', 'Zoe Saldana', 'Karl Urban' ],
+    directors: [ 'J.J. Abrams' ],
+    runtime: 132
+  },
+  {
+    _id: ObjectId('573a13c7f29313caabd742df'),
+    fullplot: `This film is set in 2093 and takes place in the same universe as the 'Alien' movies. A group of explorers, including some archaeologists, are on an "undisclosed" mission. They arrive at a planet millions of miles away from Earth. The team spot what they believe to be signs of civilization. They go to investigate and find more than just signs, they find conclusive evidence. But some of them have an ulterior motive for being there, including the Weyland Corporation. They believe that this is where the human race actually came from. Things soon turn from excitement to survival once inside their discovery.`,
+    imdb: { rating: 7, votes: 421790, id: 1446714 },
+    year: 2012,
+    plot: 'Following clues to the origin of mankind a team journey across the universe and find a structure on a distant planet containing a monolithic statue of a humanoid head and stone cylinders of alien blood but they soon find they are not alone.',
+    genres: [ 'Adventure', 'Mystery', 'Sci-Fi' ],
+    rated: 'R',
+    metacritic: 65,
+    title: 'Prometheus',
+    lastupdated: '2015-08-22 00:26:06.407000000',
+    languages: [ 'English', 'Scottish Gaelic' ],
+    writers: [
+      'Jon Spaihts',
+      'Damon Lindelof',
+      "Dan O'Bannon (elements)",
+      'Ronald Shusett (elements)'
+    ],
+    type: 'movie',
+    tomatoes: {
+      website: 'http://www.prometheus-movie.com/',
+      viewer: { rating: 3.6, numReviews: 258802, meter: 69 },
+      dvd: ISODate('2012-10-09T00:00:00.000Z'),
+      critic: { rating: 6.9, numReviews: 271, meter: 73 },
+      boxOffice: '$126.5M',
+      consensus: "Ridley Scott's ambitious quasi-prequel to Alien may not answer all of its big questions, but it's redeemed by its haunting visual grandeur and compelling performances -- particularly Michael Fassbender as a fastidious android.",
+      rotten: 73,
+      production: '20th Century Fox',
+      lastUpdated: ISODate('2015-09-12T17:48:44.000Z'),
+      fresh: 198
+    },
+    poster: 'https://m.media-amazon.com/images/M/MV5BMTY3NzIyNTA2NV5BMl5BanBnXkFtZTcwNzE2NjI4Nw@@._V1_SY1000_SX677_AL_.jpg',
+    num_mflix_comments: 1,
+    released: ISODate('2012-06-08T00:00:00.000Z'),
+    awards: {
+      wins: 7,
+      nominations: 34,
+      text: 'Nominated for 1 Oscar. Another 6 wins & 34 nominations.'
+    },
+    countries: [ 'USA', 'UK' ],
+    cast: [
+      'Noomi Rapace',
+      'Michael Fassbender',
+      'Charlize Theron',
+      'Idris Elba'
+    ],
+    directors: [ 'Ridley Scott' ],
+    runtime: 124
+  },
+  {
+    _id: ObjectId('573a13c7f29313caabd7654a'),
+    plot: 'Four assassins meet in a hotel suite to resolve unfinished business. A tense drama set in the cosmopolitan world of Hong Kong.',
+    genres: [ 'Thriller' ],
+    countries: [ 'Hong Kong', 'USA' ],
+    cast: [
+      'Will Yun Lee',
+      'Miguel Ferrer',
+      'Mercedes Renard',
+      'Hiro Hayama'
+    ],
+    poster: 'https://m.media-amazon.com/images/M/MV5BMjk2MDgzMTA2M15BMl5BanBnXkFtZTcwMzM3NDkzOQ@@._V1_SY1000_SX677_AL_.jpg',
+    title: 'Four Assassins',
+    fullplot: `"FOUR ASSASSINS" aka "Far Away Eyes" is a tense drama about an ace assassin who reunites with three professional colleagues at a Hong Kong hotel room to resolve unfinished business. The film was heavily influenced by the modern "Wuxia" genre - following a tragic protagonist with exceptional fighting skills and a yearning for something more. Not your ordinary "shoot 'em" film, Four Assassins examines the internal pain and conflicts of four highly trained killers and ask the ultimate question "What is the price of love?`,
+    languages: [ 'English' ],
+    released: ISODate('2013-01-08T00:00:00.000Z'),
+    directors: [ 'Stanley J. Orzel' ],
+    writers: [ 'Stanley J. Orzel' ],
+    awards: { wins: 8, nominations: 4, text: '8 wins & 4 nominations.' },
+    lastupdated: '2015-08-22 01:03:05.703000000',
+    year: 2013,
+    imdb: { rating: 3.5, votes: 541, id: 1478804 },
+    type: 'movie',
+    tomatoes: {
+      viewer: { rating: 2.2, numReviews: 101, meter: 17 },
+      dvd: ISODate('2013-02-19T00:00:00.000Z'),
+      production: 'Cinema Epoch',
+      lastUpdated: ISODate('2015-08-31T18:19:54.000Z')
+    }
+  }
+]
+Type "it" for more
+my_store> db.comments.countDocuments({ 
+|   "email": { "$regex": "@GAMEOFTHRON\\.ES$", "$options": "i" } 
+| })
+| 
+22841
+my_store> db.comments.findOne()
+{
+  _id: ObjectId('5a9427648b0beebeb69579cc'),
+  name: 'Andrea Le',
+  email: 'andrea_le@fakegmail.com',
+  movie_id: ObjectId('573a1390f29313caabcd418c'),
+  text: 'Rem officiis eaque repellendus amet eos doloribus. Porro dolor voluptatum voluptates neque culpa molestias. Voluptate unde nulla temporibus ullam.',
+  date: ISODate('2012-03-26T23:20:16.000Z')
+}
+my_store> db.comments.countDocuments({
+|   "email": { "$regex": "@GAMEOFTHRON\\.ES$", "$options": "i" }
+| })
+| 
+22841
+my_store> db.comments.countDocuments({
+|   "email": { "$regex": "@GAMEOFTHRON\\.ES$", "$options": "i"
+| 
+| 
+| }db.comments.countDocuments{
+| (  "email": { "$regex": "@GAMEOFTHRON\\.ES$", "$options": "i"}
+|  )
+| }
+Uncaught:
+SyntaxError: Unexpected token, expected "," (5:1)
+
+  3 |
+  4 |
+> 5 | }db.comments.countDocuments{
+    |  ^
+  6 | (  "email": { "$regex": "@GAMEOFTHRON\\.ES$", "$options": "i"}
+  7 |  )
+  8 | }
+
+my_store> db.comments.countDocuments({
+|   "email": { "$regex": "@GAMEOFTHRON\\.ES$", "$options": "i" }
+| })
+| 
+22841
+my_store> db.comments.countDocuments({
+|   "email": { "$regex": "gameofthron", "$options": "i" }
+| })
+| 
+22841
+my_store> db.theaters.aggregate([
+|   { 
+|     $match: { "location.address.state": "DC" } 
+|   },
+|   {
+|     $group: {
+|       _id: "$location.address.zipcode",
+|       totalCinemas: { $sum: 1 }
+|     }
+|   },
+|   { $sort: { _id: 1 } }
+| db.theaters.aggregate([
+|   { 
+|     $match: { "location.address.state": "DC" } 
+|   },
+|   {
+|     $group: {
+|       _id: "$location.address.zipcode",
+|       totalCinemas: { $sum: 1 }
+|     }
+|   },
+|   { $sort: { _id: 1 } }
+Uncaught:
+SyntaxError: Unexpected token, expected "," (12:0)
+
+  10 |   },
+  11 |   { $sort: { _id: 1 } }
+> 12 | db.theaters.aggregate([
+     | ^
+  13 |   { 
+  14 |     $match: { "location.address.state": "DC" } 
+  15 |   },
+
+my_store> db.theaters.aggregate([
+|   { 
+|     $match: { "location.address.state": "DC" } 
+|   },
+|   {
+|     $group: {
+|       _id: "$location.address.zipcode",
+|       totalCinemas: { $sum: 1 }
+|     }
+|   },
+|   { $sort: { _id: 1 } }  // opcional: ordena per codi postal
+| ])
+| 
+[
+  { _id: '20002', totalCinemas: 1 },
+  { _id: '20010', totalCinemas: 1 },
+  { _id: '20016', totalCinemas: 1 }
+]
+my_store> db.theaters.aggregate([
+|   { 
+|     $match: { "location.address.state": "DC" } 
+|   },
+|   {
+|     $group: {
+|       _id: "$location.address.zipcode",
+|       totalCinemas: { $sum: 1 }
+|     }
+|   },
+|   { $sort: { _id: 1 } }  // opcional: ordena per codi postal
+| ])
+| 
+[
+  { _id: '20002', totalCinemas: 1 },
+  { _id: '20010', totalCinemas: 1 },
+  { _id: '20016', totalCinemas: 1 }
+]
+my_store> db.movies.find(
+|   { 
+|     "directors": "John Landis",
+|     "imdb.rating": { $gte: 7.5, $lte: 8 } 
+|   },
+|   {
+|     title: 1,
+|     "imdb.rating": 1,
+|     directors: 1,
+|     _id: 0
+|   }
+| )
+| 
+[
+  {
+    imdb: { rating: 7.6 },
+    title: 'Animal House',
+    directors: [ 'John Landis' ]
+  },
+  {
+    title: 'The Blues Brothers',
+    directors: [ 'John Landis' ],
+    imdb: { rating: 7.9 }
+  },
+  {
+    imdb: { rating: 7.6 },
+    title: 'An American Werewolf in London',
+    directors: [ 'John Landis' ]
+  },
+  {
+    title: 'Trading Places',
+    directors: [ 'John Landis' ],
+    imdb: { rating: 7.5 }
+  }
+]
+my_store> db.movies.find(
+|   { 
+|     "directors": "John Landis",
+|     "imdb.rating": { $gte: 7.5, $lte: 8 } 
+|   },
+|   {
+|     title: 1,
+|     "imdb.rating": 1,
+|     directors: 1,
+|     _id: 0
+|   }
+| )
+| 
+[
+  {
+    imdb: { rating: 7.6 },
+    title: 'Animal House',
+    directors: [ 'John Landis' ]
+  },
+  {
+    title: 'The Blues Brothers',
+    directors: [ 'John Landis' ],
+    imdb: { rating: 7.9 }
+  },
+  {
+    imdb: { rating: 7.6 },
+    title: 'An American Werewolf in London',
+    directors: [ 'John Landis' ]
+  },
+  {
+    title: 'Trading Places',
+    directors: [ 'John Landis' ],
+    imdb: { rating: 7.5 }
+  }
+]
+my_store> db.mystore.findOne()
+null
+my_store> db.movies.findOne()
+{
+  _id: ObjectId('573a1390f29313caabcd4135'),
+  plot: 'Three men hammer on an anvil and pass a bottle of beer around.',
+  genres: [ 'Short' ],
+  runtime: 1,
+  cast: [ 'Charles Kayser', 'John Ott' ],
+  num_mflix_comments: 1,
+  title: 'Blacksmith Scene',
+  fullplot: 'A stationary camera looks at a large anvil with a blacksmith behind it and one on either side. The smith in the middle draws a heated metal rod from the fire, places it on the anvil, and all three begin a rhythmic hammering. After several blows, the metal goes back in the fire. One smith pulls out a bottle of beer, and they each take a swig. Then, out comes the glowing metal and the hammering resumes.',
+  countries: [ 'USA' ],
+  released: ISODate('1893-05-09T00:00:00.000Z'),
+  directors: [ 'William K.L. Dickson' ],
+  rated: 'UNRATED',
+  awards: { wins: 1, nominations: 0, text: '1 win.' },
+  lastupdated: '2015-08-26 00:03:50.133000000',
+  year: 1893,
+  imdb: { rating: 6.2, votes: 1189, id: 5 },
+  type: 'movie',
+  tomatoes: {
+    viewer: { rating: 3, numReviews: 184, meter: 32 },
+    lastUpdated: ISODate('2015-06-28T18:34:09.000Z')
+  }
+}
+my_store> db.movies.find(
+|   { 
+|     "directors": "John Landis",
+|     "imdb.rating": { $gte: 7.5, $lte: 8 } 
+|   },
+|   { "title": 1, "directors": 1, "imdb.rating": 1, "_id": 0 }
+| )
+| 
+[
+  {
+    imdb: { rating: 7.6 },
+    title: 'Animal House',
+    directors: [ 'John Landis' ]
+  },
+  {
+    title: 'The Blues Brothers',
+    directors: [ 'John Landis' ],
+    imdb: { rating: 7.9 }
+  },
+  {
+    imdb: { rating: 7.6 },
+    title: 'An American Werewolf in London',
+    directors: [ 'John Landis' ]
+  },
+  {
+    title: 'Trading Places',
+    directors: [ 'John Landis' ],
+    imdb: { rating: 7.5 }
+  }
+]
+my_store> db.theaters.findOne()
+{
+  _id: ObjectId('59a47286cfa9a3a73e51e72c'),
+  theaterId: 1000,
+  location: {
+    address: {
+      street1: '340 W Market',
+      city: 'Bloomington',
+      state: 'MN',
+      zipcode: '55425'
+    },
+    geo: { type: 'Point', coordinates: [ -93.24565, 44.85466 ] }
+  }
+}
+my_store> "geo": {
+|   "type": "Point",
+|   "coordinates": [ -93.24565, 44.85466 ]
+| }
+| 
+Uncaught:
+SyntaxError: Missing semicolon. (1:5)
+
+> 1 | "geo": {
+    |      ^
+  2 |   "type": "Point",
+  3 |   "coordinates": [ -93.24565, 44.85466 ]
+  4 | }
+
+my_store> "geo": {
+|   "type": "Point",
+|   "coordinates": [ -93.24565, 44.85466 ]
+| }
+| 
+Uncaught:
+SyntaxError: Missing semicolon. (1:5)
+
+> 1 | "geo": {
+    |      ^
+  2 |   "type": "Point",
+  3 |   "coordinates": [ -93.24565, 44.85466 ]
+  4 | }
+
+my_store> db.theaters.createIndex({ "location.geo": "2dsphere" })
+| 
+location.geo_2dsphere
+my_store> db.teatres.find(
+|   {},
+|   { 
+|     "theaterId": 1,
+|     "location.address": 1,
+|     "location.geo": 1,
+|     "_id": 0
+|   }
+| )
+| 
+
+my_store> db.teatres.find(
+|   {},
+|   { 
+|     "theaterId": 1,
+|     "location.address": 1,
+|     "location.geo": 1,
+|     "_id": 0
+|   }
+| )
+| 
+
+my_store> db.teatres.find(
+|   {},
+|   { "theaterId": 1, "location.address": 1, "location.geo": 1, "_id": 0 }
+| ).forEach(function(doc) {
+|     printjson({
+|         "type": "Feature",
+|         "geometry": doc.location.geo,
+|         "properties": {
+|             "theaterId": doc.theaterId,
+|             "address": doc.location.address
+|         }
+|     });
+| });
+| 
+
+my_store> db.teatres.find(
+|   {},
+|   { "theaterId": 1, "location.address": 1, "location.geo": 1, "_id": 0 }
+| ).forEach(function(doc) {
+|     printjson({
+|         "type": "Feature",
+|         "geometry": doc.location.geo,
+|         "properties": {
+|             "theaterId": doc.theaterId,
+|             "address": doc.location.address
+|         }
+|     });
+| });
+| 
+
+my_store> 
